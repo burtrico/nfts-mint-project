@@ -11,6 +11,8 @@ class CreateNfts < ActiveRecord::Migration[6.1]
       t.decimal :price_current
       t.decimal :last_sale
       t.integer :num_sales
+      t.text :description
+      t.string :token_metadata
 
       t.timestamps
     end

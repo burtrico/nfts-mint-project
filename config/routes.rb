@@ -10,6 +10,16 @@ Rails.application.routes.draw do
     post "/signup", to: "users#create"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    
+    get "/nfts", to: "nfts#show"
+    post "/nfts", to: "nfts#create"
+
+    get "/nft_contracts", to: "nft_contracts#show"
+    post "/nft_contracts", to: "nft_contracts#create"
+    delete "/nft_contracts", to: "nft_contracts#delete"
+
+    patch "/nft_contracts", to: "nft_contracts#update"
+
 
     post 'uploads/prepare'
   end

@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :ok
     else
-      render json: {error: 'invalid username or password'}, status: :unauthorized
+      render json: {error: 'invalid ens_domain or password'}, status: :unauthorized
     end
   end
 

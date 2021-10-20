@@ -158,8 +158,8 @@ function NftContractContainer({currentUser}) {
   }
 
   return (
-    <div>
-      {/* <Switch> */}
+    <div className="NftContractContainerDiv">
+      <Switch>
         <Route
           exact
           path="/nft_contracts"
@@ -182,10 +182,11 @@ function NftContractContainer({currentUser}) {
               currentUser={currentUser}
               nftContractId={match.params.id}
               cancelNftContract={cancelNftContract}
+              nftContracts={nftContracts}
             />
           }}
         />
-      {/* </Switch> */}
+      </Switch>
     </div>
   )
 }

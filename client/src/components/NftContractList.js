@@ -25,7 +25,8 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   //   }
   // }
 
-console.log(">>>>> currentUser = ",currentUser)
+console.log(">> @@ > currentUser = ",currentUser)
+console.log(">> $$ >> NftContracts = ",nftContracts)
 
 const formData = { collection_name: collectionName,
   name: name,
@@ -64,18 +65,21 @@ const formData = { collection_name: collectionName,
   const [updateON, setUpdateON] = useState(false)
 
   const handleToggle = () => {
-    setUpdateON(!updateON)
+    if (updateON) { setUpdateON(false) } 
+    else{ setUpdateON(true) }
+    console.log("TOGGLED!!! updateON =",updateON)
 }
+ 
 
   return (
     <div>
       <h1>NFT Contracts</h1>
       <ul>
-      {nftContracts.map(nftContract => (<li key={nftContract.id}><Link to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name ? nftContract.collection_name : nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
-      ))}
+      {nftContracts.length > 0 ? nftContracts.map(nftContract => (<li  key={nftContract.id}><Link className="nftContractLink" to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name}{nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
+      )) : ""}
       </ul>
       <h3>Create or Update an NFT Contract</h3>
-      <button id="create-update-toggle" onSubmit={handleToggle}> Click here to Toggle to {updateON ? "UPDATE" : "CREATE"}</button>
+      <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>
 
         <p>
@@ -135,7 +139,7 @@ const formData = { collection_name: collectionName,
         <p>
           <label htmlFor="drop_date"> Drop Date </label>
           <input
-            type="datetime-local"
+            type="datetime"
             value={dropDate}
             onChange={(e) => setDropDate(e.target.value)}
             name="drop_date"

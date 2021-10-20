@@ -26,7 +26,7 @@ function NavBar({ color, title, description, changeColor }) {
 
         <div className="navlink">
             <NavLink
-                to="/"
+                to="/nfts"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -68,7 +68,8 @@ function NavBar({ color, title, description, changeColor }) {
 
         <div className="navlink">
             <NavLink
-                to="/NftContractContainer"
+                // to="/NftContractContainer"
+                to="/nft_contracts"
                 exact
                 style={linkStyles}
                 activeStyle={{

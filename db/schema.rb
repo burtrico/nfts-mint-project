@@ -26,10 +26,9 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
     t.decimal "creator_royalty"
     t.text "description"
     t.string "token_metadata"
-    t.bigint "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_nft_contracts_on_user_id"
   end
 
   create_table "nfts", force: :cascade do |t|
@@ -62,7 +61,6 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
     t.string "profile_picture_thumbnail_url"
   end
 
-  add_foreign_key "nft_contracts", "users"
   add_foreign_key "nfts", "nft_contracts"
   add_foreign_key "nfts", "users"
 end

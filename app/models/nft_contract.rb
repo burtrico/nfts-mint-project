@@ -1,5 +1,7 @@
 class NftContract < ApplicationRecord
-  belongs_to :user
+  
   has_many :nfts, dependent: :destroy
   has_many :users, through: :nfts
+
+  # belongs_to :user
 end

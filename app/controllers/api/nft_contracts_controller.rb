@@ -1,10 +1,13 @@
 class Api::NftContractsController < ApplicationController
-    before_action :edit_nft_contract, only: [:show, :update, :destroy]
-    before_action :authorize_user, only: [:update, :destroy]
+    before_action :edit_nft_contract
+    # , only: [:show, :update, :destroy]
+    # before_action :authorize_user, only: [:update, :destroy]
   
     def index
-      nft_contracts = NftContract.all.includes(:user_nft_contracts)
-      render json: nft_contracts, each_serializer: NftContractIndexSerializer
+      nft_contracts = NftContract.all
+      # .includes(:user_nft_contracts)
+      render json: nft_contracts
+      # , each_serializer: NftContractIndexSerializer
     end
   
     def show
@@ -12,7 +15,7 @@ class Api::NftContractsController < ApplicationController
     end
   
     def create
-      nft_contract = current_user.created_nft_contracts.new(nft_contract_params)
+      nft_contract = NftContract.new(nft_contract_params)
     #   ^^^^^^^^^^^^^^^^^^^^          ^^^^^^^^^^^^ !!!!
       if nft_contract.save
         render json: nft_contract, status: :created

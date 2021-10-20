@@ -2,7 +2,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 puts ">>> Starting Seeds ... <<<"
 
-user1 = User.create(ens_domain: "burt.eth", wallet_address: "vjb23b32kbe23hbk323bwklh7l33lb1lzklc8d7rm6", password: "1234")
+user1 = User.create(ens_domain: "burt.eth", wallet_address: "vjb23b32kbe23hbk323bwklh7l33lb1lzklc8d7rm6", password: "1234", admin: true)
 user2 = User.create(ens_domain: "dakota.eth", wallet_address: "nnin2323kn2jnbb2k3on3n3noo23de394dsc8a5sp5", password: "1234")
 user3 = User.create(ens_domain: "sam.eth", wallet_address: "0f9exn71xnvmfv8ed839485mskof6i3fjso6sx8f74", password: "1234")
 user4 = User.create(ens_domain: "joe.eth", wallet_address: "ksk73mci95k6k7n89nm8k4kbwvef5h5gv5j6k69hj1", password: "1234")
@@ -12,9 +12,21 @@ user6 = User.create(ens_domain: "snufkin.eth", wallet_address: "d3nks9s7f8g6gf4d
 puts ">> Users Seeded <<"
 
 nft_contract1 = NftContract.create(user_id: user1.id, contract_type: "non-funglible", contract_address: "1r6c8ixn71xnfv8ed83fg85mskof6i3fjso6sx0s2l", 
-      collection_name: "Snuggly Snufkins", name: "", image_url: "", drop_date: "10/21/2021 12:00", price_mint: 0.2, 
+      collection_name: "Snuggly Snufkins", name: "...", image_url: "...", drop_date: "10/21/2021 12:00", price_mint: 0.2, 
       creator_royalty: 0.025, description: "Located in their apartment in Houston you can find 10 snuggly snufkins sitting on their box or hunting for mice on the ETH blockchain.", 
-      token_metadata: "")
+      token_metadata: "...")
+
+      nft_contract2 = NftContract.create(user_id: user1.id, contract_type: "funglible", contract_address: "w0qc8ixn71xnfv8ed83fg35mskof6i3fjso6sx0sd4", 
+            collection_name: "", name: "Mymble", image_url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dailypaws.com%2Fcats-kittens%2Fcat-names%2Fcalico-cat-names&psig=AOvVaw13nUis_Tsgpv0B1OkWmR5d&ust=1634848425005000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMjFhJDr2fMCFQAAAAAdAAAAABAD", 
+            drop_date: "11/05/2021 12:00", price_mint: 0.3, 
+            creator_royalty: 0.025, description: "Located in their apartment in Houston you can find Mymble eating food or being cute on the ETH blockchain.", 
+            token_metadata: "...")
+
+            nft_contract3 = NftContract.create(user_id: user2.id, contract_type: "funglible", contract_address: "9w3l8ixn71xnfv8ed83fg35mskof6i3fjso6sx4k2n", 
+                  collection_name: "", name: "The Lizard", image_url: "https://i.etsystatic.com/14200102/r/il/26fd5c/1532451757/il_1588xN.1532451757_dt7m.jpg", 
+                  drop_date: "11/10/2021 12:00", price_mint: 0.5, 
+                  creator_royalty: 0.05, description: "Located on a tree branch near you ... on the ETH blockchain.", 
+                  token_metadata: "...")
 
 puts ">>> Nft Contracts Seeded <<<"
 

@@ -35,7 +35,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <NftContractContainer currentUser={currentUser} />
           </Route>
 
-          <Redirect to="/nfts_contracts"/>
+          <Redirect to="/nft_contracts"/>
         </Switch>
       </BrowserRouter>
     </div>

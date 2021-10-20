@@ -2,41 +2,55 @@ import React, { useState, useEffect, useCallback } from 'react'
 // import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-function NftContractDetail({ votePlaced, proposalId, voteYesProposal, voteNoProposal, cancelProposal, currentUser }) {
-  const [proposal, setProposal] = useState(null)
+function NftContractDetail({ nftContractId, cancelNftContract, currentUser, nftContracts }) {
+  const [nftContract, setNftContract] = useState(null)
+  
+
+
   // const history = useHistory();
 
-console.log('Proposal ID:',proposalId)
+console.log('NFT Contract ID:',nftContractId)
 
-  const fetchProposalCallback = useCallback(
+  const fetchNftContractCallback = useCallback(
     () => {
-      fetch(`/api/proposals/${proposalId}`, {
+      fetch(`/api/nft_contracts/${nftContractId}`, {
         credentials: 'include'
       })
         .then(res => res.json())
-        .then(proposal => setProposal(proposal))
+        .then(nftContract2 => {
+          console.log(' >> Callback:',nftContract2)
+          setNftContract(nftContract2)
+          // renderNftContract(nftContract)
+
+        })
     },
-    [proposalId],
+    [nftContractId],
   )
 
   useEffect(() => {
-    fetchProposalCallback()
-  }, [fetchProposalCallback])
+    fetchNftContractCallback()
+    
+    // const filtered = nftContracts.map(eachNftContract => eachNftContract.id == nftContractId)
+
+    // setNftContract(filtered[0])
+    // console.log("FILTERED nft contract:",filtered)
+  }, [fetchNftContractCallback])
 
 
-  const cancelProposalButton = (proposal) => {
-    if (proposal.user_is_creator) {
+  const cancelNftContractButton = (nftContract3) => {
+    if (nftContract3) {
+      // .user_is_creator
       return (
         <p>
           <button
-            onClick={handleCancel}>Cancel Proposal</button>
+            onClick={handleCancel}>Cancel NFT Contract</button>
         </p>
       )
     }
   }
 
   const handleCancel = (e) => {
-    cancelProposal(proposal.id);
+    cancelNftContract(nftContract.id);
     // history.push('/api/proposals')
   }
 
@@ -46,25 +60,8 @@ console.log('Proposal ID:',proposalId)
   //   else {false}
   // }
 
-console.log("SEE VOTES HERE:",proposal.votes)
 
-  const voteYesButton = () => {
-    if (proposal.vote) {
-      // return <button onClick={() => removeRsvpToProposal(proposal.id)}>Cancel RSVP</button>
-      return <p>Vote Confirmed</p>
-    } else {
-      return <button onClick={() => voteYesProposal(proposalId)}>Vote YES for Proposal</button>
-    }
-  }
 
-  const voteNoButton = () => {
-    if (proposal.vote) {
-      // return <button onClick={() => removeRsvpToProposal(proposal.id)}>Cancel RSVP</button>
-      return <p>Vote Confirmed</p>
-    } else {
-      return <button onClick={() => voteNoProposal(proposalId)}>Vote NO for Proposal</button>
-    }
-  }
 
   // const rsvpButton = (proposal) => {
   //   if (proposal.user_proposal) {
@@ -90,31 +87,64 @@ console.log("SEE VOTES HERE:",proposal.votes)
   //   }
   // }
   
-  console.log('LOADED:',proposal)
+  console.log('LOADED NFT Contract:',nftContract)
 
-  if(!proposal) { return <div></div>}
+  // if(!nftContract) { return <div>
+  //           {/* <<NavLink
+  //               to="/nft_contracts"
+  //               exact
+  //               style={linkStyles}
+  //               activeStyle={{
+  //               background: "white",
+  //               color: "black",
+  //               }}
+  //           >
+  //               Back
+  //           </NavLink> */}
+  // </div>}
+
+
+  // const renderNftContract = (nftContract) => { 
+  //     const manualNftContract = {}
+  //     manualNftContract.collection_name = nftContract.collection_name 
+  //     manualNftContract.name = nftContract.name
+  //     manualNftContract.contract_type = nftContract.contract_type
+  //     manualNftContract.contract_address = nftContract.contract_address
+
+  //     manualNftContract.image_url = nftContract.image_url
+  //     manualNftContract.drop_date = nftContract.drop_date
+  //     manualNftContract.description = nftContract.description
+  //     manualNftContract.price_mint = nftContract.price_mint
+  //     manualNftContract.creator_royalty = nftContract.creator_royalty
+  //     manualNftContract.token_metadata = nftContract.token_metadata
+  //     setNftContract(manualNftContract)
+  // }
+
+      
   return (
     <div>
-      <h1>{proposal.title}</h1>
-      <p>Status: {proposal.status}</p>
-      {cancelProposalButton(proposal)}
-      <small>DAO: {proposal.token}</small>
-      <small>Author: {proposal.author}</small>
-      <p>{proposal.description}</p>
-      <p>Start Date: {proposal.start_date}</p>
-      <p>End Date: {proposal.end_date}</p>
+      <h1> Loaded </h1>
+
+      {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
+      {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
+      <p>Contract Type: {nftContract.contract_type}</p>
+      <p>Contract Address: {nftContract.contract_address}</p>
+      {cancelNftContractButton(nftContract)}
+      <small>Creator: {currentUser}</small>
+
+      <p>Image Url: {nftContract.image_url}</p>
+      <p>Drop Date: {nftContract.drop_date}</p>
+      <p>Description: {nftContract.description}</p>
+      <p>Price Mint: {nftContract.price_mint}</p>
+      <p>Creator Royalty: {nftContract.creator_royalty}</p>
+      <p>Token Metadata: {nftContract.token_metadata}</p>
+
+
+
+      
       <br/>
-      <p>Votes to Approve: {proposal.approve}</p>
-      <p>Votes to Deny: {proposal.deny}</p>
-      <br/>
-      <p>{voteYesButton(proposal)}</p>
-      <p>{voteNoButton(proposal)}</p>
-      <br/>
-      <ul>
-        {proposal.votes.map(vote => (
-          <li key={vote.id}>{vote.user_id} -- {vote.vote_to_approve ? "APPROVE" : "DENY"} -- {vote.count} token votes</li>
-        ))}
-      </ul>
+
+
 
     </div>
   )

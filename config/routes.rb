@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do 
     resources :nfts, only: [:index, :show, :create, :update, :destroy]
     resources :nft_contracts, only: [:index, :show, :create, :update, :destroy]
-    # resources :users
+    resources :users
     # Routing logic: fallback requests for React Router.
     # Leave this here to help deploy your app later!
     get "/me", to: "users#show"

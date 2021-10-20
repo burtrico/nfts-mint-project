@@ -3,12 +3,12 @@ import { Redirect, Link } from 'react-router-dom'
 
 function Login({ setCurrentUser }) {
   // const history = useHistory()
-  const [ens_domain, setEns_domain] = useState('')
+  const [ens_domain, setEnsDomain] = useState('')
   const [password, setPassword] = useState('')
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetch('/login', {
+    fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ function Login({ setCurrentUser }) {
   }
   return (
     <div className="authForm">
-      <Redirect to="/api/" />
+      <Redirect to="/" />
       <form onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <p>
@@ -43,7 +43,7 @@ function Login({ setCurrentUser }) {
             type="text"
             name="ens_domain"
             value={ens_domain}
-            onChange={(e) => setEns_domain(e.target.value)}
+            onChange={(e) => setEnsDomain(e.target.value)}
           />
         </p>
         <p>
@@ -61,7 +61,7 @@ function Login({ setCurrentUser }) {
         </p>
         <p><button type="submit">Log In</button></p>
         <p>-- or --</p>
-        <p><Link to="/api/signup">Sign Up</Link></p>
+        <p><Link to="/signup">Sign Up</Link></p>
       </form>
     </div>
   )

@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {useState , useEffect} from "react";
 import { BrowserRouter , Route , NavLink , Switch } from "react-router-dom";
-import NFTlist from "./NFTlist";
-import NFTwallet from "./NFTwallet";
-import NFTmint from "./NFTmint";
-import NFTwhat from "./NFTwhat";
+import NftList from "./NftList";
+import NftWallet from "./NftWallet";
+import NftMint from "./NftMint";
 import NavBar from "./NavBar";
-import Opensea from './images/opensea.png';
-import Powered from './images/powered.png';
+import Opensea from '../images/opensea.png';
+import Powered from '../images/powered.png';
 
 
 function NftContainer(){
@@ -109,15 +108,15 @@ function NftContainer(){
             <Switch>
 
                 <Route path="/NFTmint">
-                    <NFTmint
+                    <NftMint
                     walletNFTs={walletNFTs}
                     handleAddCard={addToWallet}
                     />
 
                 </Route>
 
-                <Route path="/NFTwallet">
-                    <NFTwallet
+                <Route path="/NftWallet">
+                    <NftWallet
                     walletNFTs={walletNFTs}
                     removeFromWallet={removeFromWallet}
                     />
@@ -131,15 +130,15 @@ function NftContainer(){
                     />
                 </Route> */}
 
-                <Route exact path="/NFTwhat">
-                    <NFTwhat
+                {/* <Route exact path="/NFTwhat">
+                    <NftWhat
                     data={data} 
                     addToWallet={addToWallet}
                     />
-                </Route>
+                </Route> */}
 
                 <Route path="/">
-                    <NFTlist
+                    <NftList
                     data={data} 
                     addToWallet={addToWallet}
                     />

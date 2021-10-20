@@ -1,5 +1,5 @@
-import NFTcard from './NFTcard.js'
-import './index.css';
+import NFTcard from './NftCard.js'
+import '../index.css';
 
 // Material-UI Imports
 import { createChainedFunction, Grid } from '@material-ui/core';

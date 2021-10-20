@@ -1,13 +1,15 @@
 import './App.css';
 // import GroupsContainer from './components/GroupsContainer'
-import ProposalsContainer from './components/NftContractsContainer'
-import { Switch, Route, NavLink, Redirect } from 'react-router-dom'
+import NftContractContainer from './components/NftContractContainer'
+import NftContainer from './components/NftContainer'
+import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom'
+import NavBar from "./components/NavBar";
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   // const history = useHistory()
   
   const handleLogout = () => {
-    fetch(`/logout`, {
+    fetch(`/api/logout`, {
       method: 'DELETE',
       credentials: 'include'
     })
@@ -22,20 +24,18 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   return (
     <div className="App">
       <BrowserRouter>
-          <NavBar/>
-          
-          <span>Current User = {currentUser.ens_domain} <button onClick={handleLogout}> Logout </button></span>
+        <NavBar/>
         
         <Switch>
-        <Route path="/api/nfts">
+        {/* <Route path="/nfts">
             <NftContainer currentUser={currentUser} />
-          </Route>
+          </Route> */}
 
-          <Route path="/api/nft_contracts">
+          <Route path="/nft_contracts">
             <NftContractContainer currentUser={currentUser} />
           </Route>
 
-          <Redirect to="/api/nfts"/>
+          <Redirect to="/nfts_contracts"/>
         </Switch>
       </BrowserRouter>
     </div>

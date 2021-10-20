@@ -1,5 +1,5 @@
-import './index.css';
-import Mint from './images/mint.png';
+import '../index.css';
+import Mint from '../images/mint.png';
 
 // Material-UI Imports
 import { Grid } from '@material-ui/core';

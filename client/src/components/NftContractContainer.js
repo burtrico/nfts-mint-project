@@ -9,12 +9,12 @@ function NftContractContainer({currentUser}) {
   // const [groups, setGroups] = useState([])
   
   useEffect(() => {
-    fetch(`/nft_contracts`, {
+    fetch(`/api/nft_contracts`, {
       credentials: 'include'
     })
       .then(res => res.json())
       .then(nftContracts => {
-        setnftContracts(nftContracts)
+        setNftContracts(nftContracts)
       console.log(nftContracts)
       })
     // fetch(`/api/groups`, {
@@ -24,138 +24,98 @@ function NftContractContainer({currentUser}) {
     //   .then(groups => setGroups(groups))
   },[])
 
-  // const removeRsvpToProposal = (proposalId) => {
-  //   const proposal = proposals.find(proposal => proposal.id === proposalId)
-  //   return fetch(`/api/user_proposals/${proposal.user_proposal.id}`, {
+  // const removeRsvpToNftContract = (pnftContractId) => {
+  //   const pnftContract = pnftContracts.find(pnftContract => pnftContract.id === pnftContractId)
+  //   return fetch(`/api/user_pnftContracts/${pnftContract.user_pnftContract.id}`, {
   //     method: "DELETE",
   //     credentials: 'include'
   //   })
   //     .then(res => {
   //       if (res.ok) {
-  //         // if the Proposal is the one we just removed an rsvp 
-  //         // for, set its user_Proposal property in state to 
-  //         // undefined; If not, leave the Proposal as it is
-  //         const updatedProposals = proposals.map((proposal) => {
-  //           if (proposal.id === proposalId) {
+  //         // if the PnftContract is the one we just removed an rsvp 
+  //         // for, set its user_PnftContract property in state to 
+  //         // undefined; If not, leave the PnftContract as it is
+  //         const updatedPnftContracts = pnftContracts.map((pnftContract) => {
+  //           if (pnftContract.id === pnftContractId) {
   //             return {
-  //               ...proposal,
-  //               user_proposal: undefined
+  //               ...pnftContract,
+  //               user_pnftContract: undefined
   //             }
   //           } else {
-  //             return proposal
+  //             return pnftContract
   //           }
   //         })
-  //         setProposals(updatedProposals)
+  //         setPnftContracts(updatedPnftContracts)
   //       }
   //     })
   // }
 
-  const cancelProposal = (proposalId) => {
-    return fetch(`/proposals/${proposalId}`, {
+  const cancelNftContract = (nftContractId) => {
+    return fetch(`/api/nftContracts/${nftContractId}`, {
       method: "DELETE",
       credentials: 'include'
     })
       .then(res => {
         if (res.ok) {
-          const updatedProposals = proposals.filter(proposal => proposal.id !== proposalId)
-          setProposals(updatedProposals)
+          const updatedNftContracts = nftContracts.filter(nftContract => nftContract.id !== nftContractId)
+          setNftContracts(updatedNftContracts)
         }
       })
   }
 
-  const voteYesProposal = (proposalId) => {
-    return fetch('/votes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        proposal_id: proposalId,
-        // Need to change this later:
-        token: "LYRA",
-        count: 17000,
-        vote_to_approve: true
-      })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return res.json().then(errors => Promise.reject(errors))
-        }
-      })
-      .then(userVote => {
-        // if the Proposal is the one we just voted on,
-        // add a user_proposal property in state and set
-        // it to the userProposal; if not, leave it as is
-        const updatedProposals = proposals.map((proposal) => {
+  // const voteYesPnftContract = (pnftContractId) => {
+  //   return fetch('/votes', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     credentials: 'include',
+  //     body: JSON.stringify({
+  //       user_id: currentUser.id,
+  //       pnftContract_id: pnftContractId,
+  //       // Need to change this later:
+  //       token: "LYRA",
+  //       count: 17000,
+  //       vote_to_approve: true
+  //     })
+  //   })
+  //     .then(res => {
+  //       if (res.ok) {
+  //         return res.json()
+  //       } else {
+  //         return res.json().then(errors => Promise.reject(errors))
+  //       }
+  //     })
+  //     .then(userVote => {
+  //       // if the PnftContract is the one we just voted on,
+  //       // add a user_pnftContract property in state and set
+  //       // it to the userPnftContract; if not, leave it as is
+  //       const updatedPnftContracts = pnftContracts.map((pnftContract) => {
 
-          if (proposal.id === proposalId) {
-            return {
-              ...proposal,
-              vote: userVote
-            }
-          } else {
-            return proposal
-          }
+  //         if (pnftContract.id === pnftContractId) {
+  //           return {
+  //             ...pnftContract,
+  //             vote: userVote
+  //           }
+  //         } else {
+  //           return pnftContract
+  //         }
         
         
-      })
-        // setVotePlaced(true)
-        console.log(userVote)
-        setProposals(updatedProposals)
+  //     })
+  //       // setVotePlaced(true)
+  //       console.log(userVote)
+  //       setPnftContracts(updatedPnftContracts)
       
-  })
-  }
+  // })
+  // }
 
 
 
-  const voteNoProposal = (proposalId) => {
-    return fetch('/votes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        proposal_id: proposalId,
-        // Need to change this later:
-        token: "LYRA",
-        count: 17000,
-        vote_to_approve: false
-      })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return res.json().then(errors => Promise.reject(errors))
-        }
-      })
-      .then(userVote => {
-        // if the Proposal is the one we just voted on,
-        // add a user_proposal property in state and set
-        // it to the userProposal; if not, leave it as is
-        const updatedProposals = proposals.map((proposal) => {
-          if (proposal.id === proposalId) {
-            return {
-              ...proposal,
-              vote: userVote
-            }
-          } else {
-            return proposal
-          }
-        })
-        console.log(userVote)
-        setProposals(updatedProposals)
-      })
-  }
+  
 
-  const createProposal = (formData) => {
-    return fetch("/proposals", {
+  const createNftContract = (formData) => {
+    return fetch("/api/nft_contracts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -170,8 +130,30 @@ function NftContractContainer({currentUser}) {
           return res.json().then(errors => Promise.reject(errors))
         }
       })
-      .then(proposal => {
-        setProposals(proposals.concat(proposal))
+      .then(nftContract => {
+        setNftContracts(nftContracts.concat(nftContract))
+      })
+  }
+
+  const updateNftContract = (nftContractId, formData) => {
+    return fetch(`/api/nft_contracts/${nftContractId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include',
+      body: JSON.stringify(formData)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return res.json().then(errors => Promise.reject(errors))
+        }
+      })
+      .then(nftContract => {
+        const otherNftContracts = nftContracts.filter(eachNftContract => eachNftContract.id !== nftContractId)
+        setNftContracts(otherNftContracts.concat(nftContract))
       })
   }
 
@@ -180,25 +162,25 @@ function NftContractContainer({currentUser}) {
       {/* <Switch> */}
         <Route
           exact
-          path="/api/proposals"
+          path="/nft_contracts"
         >
           <NftContractList
             nftContracts={nftContracts}
             currentUser={currentUser}
-            cancelProposal={cancelNftContract}
-            // removeRsvpToProposal={removeRsvpToProposal}
+            cancelNftContract={cancelNftContract}
+            // removeRsvpToPnftContract={removeRsvpToPnftContract}
             createNftContract={createNftContract}
-            updateNftContract={createNftContract}
+            updateNftContract={updateNftContract}
           />
         </Route>
         <Route
           exact
-          path="/api/nft_contracts/:id"
+          path="/nft_contracts/:id"
           render={({ match }) => {
              // !!!!  ^^^ !!!!!
             return <NftContractDetail
               currentUser={currentUser}
-              NftContractId={match.params.id}
+              nftContractId={match.params.id}
               cancelNftContract={cancelNftContract}
             />
           }}

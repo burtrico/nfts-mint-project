@@ -1,6 +1,6 @@
 
 // import NFTwallet from './NFTwallet.js'
-import './index.css';
+import '../index.css';
 
 function NftCard({nftObj, addToWallet, removeFromWallet}) {
 

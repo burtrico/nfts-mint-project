@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function NftContractList({ currentUser, proposals, cancelProposal, createProposal, updateProposal }) {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  const [token, setToken] = useState('')
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  // const [location, setLocation] = useState('')
-  const [startDate, setStartDate] = useState(now.toISOString().slice(0, 16))
-  const [endDate, setEndDate] = useState('')
+function NftContractList({ currentUser, nftContracts, cancelNftContract, createNftContract, updateNftContract }) {
+  // const now = new Date();
+  // now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  // const [startDate, setStartDate] = useState(now.toISOString().slice(0, 16))
+
+  const [ collectionName, setCollectionName ] = useState('')
+  const [ name, setName ] = useState('')
+  const [ contractType, setContractType ] = useState('')
+  const [ contractAddress, setContractAddress ] = useState('')
+  const [ imageUrl, setImageUrl ] = useState('')
+  const [ dropDate, setDropDate ] = useState('')
+  const [ priceMint, setPriceMint ] = useState('')
+  const [ creatorRoyalty, setCreatorRoyalty ] = useState('')
+  const [ description, setDescription ] = useState('')
+  const [ tokenMetadata, setTokenMetadata ] = useState('')
+  const [ nftContractId, setNftContractId ] = useState('')
+  
 
   // const cancelProposalButton = (proposal) => {
   //   if (proposal.user_is_creator) {
@@ -19,57 +27,141 @@ function NftContractList({ currentUser, proposals, cancelProposal, createProposa
 
 console.log(">>>>> currentUser = ",currentUser)
 
+const formData = { collection_name: collectionName,
+  name: name,
+  contract_type: contractType,
+  contract_address: contractAddress,
+  image_url: imageUrl,
+  drop_date: dropDate,
+  price_mint: priceMint,
+  creator_royalty: creatorRoyalty,
+  description: description,
+  token_metadata: tokenMetadata,
+  user_id: currentUser.id }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    createProposal({
-      token: token,
-      title: title,
-      description: description,
-      active: true,
-      start_date: startDate,
-      end_date: endDate,
-      user: currentUser
-    })
-    setToken('')
-    setTitle('')
+    if (updateON) { updateNftContract(nftContractId,formData) }
+    else { createNftContract(formData) }
+    setCollectionName('')
+    setName('')
+    setContractType('')
+    setContractAddress('')
+    setImageUrl('')
+    setDropDate('')
+    setPriceMint('')
+    setCreatorRoyalty('')
     setDescription('')
-    setStartDate('')
-    setEndDate('')
+    setTokenMetadata('')
   }
   
-  console.log(">>>>PROPOSALS:",proposals)
+
+  // console.log(">>>>PROPOSALS:",proposals)
 
 
   // const token_metadata = "eyJuYW1lIjogIkJhZyAjMSIsICJkZXNjcmlwdGlvbiI6ICJMb290IGlzIHJhbmRvbWl6ZWQgYWR2ZW50dXJlciBnZWFyIGdlbmVyYXRlZCBhbmQgc3RvcmVkIG9uIGNoYWluLiBTdGF0cywgaW1hZ2VzLCBhbmQgb3RoZXIgZnVuY3Rpb25hbGl0eSBhcmUgaW50ZW50aW9uYWxseSBvbWl0dGVkIGZvciBvdGhlcnMgdG8gaW50ZXJwcmV0LiBGZWVsIGZyZWUgdG8gdXNlIExvb3QgaW4gYW55IHdheSB5b3Ugd2FudC4iLCAiaW1hZ2UiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhCeVpYTmxjblpsUVhOd1pXTjBVbUYwYVc4OUluaE5hVzVaVFdsdUlHMWxaWFFpSUhacFpYZENiM2c5SWpBZ01DQXpOVEFnTXpVd0lqNDhjM1I1YkdVK0xtSmhjMlVnZXlCbWFXeHNPaUIzYUdsMFpUc2dabTl1ZEMxbVlXMXBiSGs2SUhObGNtbG1PeUJtYjI1MExYTnBlbVU2SURFMGNIZzdJSDA4TDNOMGVXeGxQanh5WldOMElIZHBaSFJvUFNJeE1EQWxJaUJvWldsbmFIUTlJakV3TUNVaUlHWnBiR3c5SW1Kc1lXTnJJaUF2UGp4MFpYaDBJSGc5SWpFd0lpQjVQU0l5TUNJZ1kyeGhjM005SW1KaGMyVWlQaUpIY21sdElGTm9iM1YwSWlCSGNtRjJaU0JYWVc1a0lHOW1JRk5yYVd4c0lDc3hQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJME1DSWdZMnhoYzNNOUltSmhjMlVpUGtoaGNtUWdUR1ZoZEdobGNpQkJjbTF2Y2p3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlOakFpSUdOc1lYTnpQU0ppWVhObElqNUVhWFpwYm1VZ1NHOXZaRHd2ZEdWNGRENDhkR1Y0ZENCNFBTSXhNQ0lnZVQwaU9EQWlJR05zWVhOelBTSmlZWE5sSWo1SVlYSmtJRXhsWVhSb1pYSWdRbVZzZER3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlNVEF3SWlCamJHRnpjejBpWW1GelpTSStJa1JsWVhSb0lGSnZiM1FpSUU5eWJtRjBaU0JIY21WaGRtVnpJRzltSUZOcmFXeHNQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE1qQWlJR05zWVhOelBTSmlZWE5sSWo1VGRIVmtaR1ZrSUV4bFlYUm9aWElnUjJ4dmRtVnpQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE5EQWlJR05zWVhOelBTSmlZWE5sSWo1T1pXTnJiR0ZqWlNCdlppQkZibXhwWjJoMFpXNXRaVzUwUEM5MFpYaDBQangwWlhoMElIZzlJakV3SWlCNVBTSXhOakFpSUdOc1lYTnpQU0ppWVhObElqNUhiMnhrSUZKcGJtYzhMM1JsZUhRK1BDOXpkbWMrIn0="
   // console.log(token_metadata.json())
+  const [updateON, setUpdateON] = useState(false)
+
+  const handleToggle = () => {
+    setUpdateON(!updateON)
+}
 
   return (
     <div>
-      <h1>Proposals</h1>
+      <h1>NFT Contracts</h1>
       <ul>
-      {proposals.map(mproposal => (<li key={mproposal.id}><Link to={`/api/proposals/${mproposal.id}`}>{mproposal.title}</Link> --- DAO: {mproposal.token} -- Author: {mproposal.author} </li> 
+      {nftContracts.map(nftContract => (<li key={nftContract.id}><Link to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name ? nftContract.collection_name : nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
       ))}
       </ul>
-      <h3>Add Proposal</h3>
+      <h3>Create or Update an NFT Contract</h3>
+      <button id="create-update-toggle" onSubmit={handleToggle}> Click here to Toggle to {updateON ? "UPDATE" : "CREATE"}</button>
       <form onSubmit={handleSubmit}>
+
         <p>
-          <label htmlFor="token">DAO Token </label>
+          <label htmlFor="collection_name"> Collection Name (if applicable)</label>
           <input
             type="text"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
             name="token"
           />
         </p>
+
         <p>
-          <label htmlFor="title">Title </label>
+          <label htmlFor="name">Name (if applicable) </label>
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            name="title"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            name="name"
           />
         </p>
+
+        <p>
+          <label htmlFor="contract_type">Contract Type </label>
+          <input
+            type="text"
+            value={contractType}
+            list="cType"
+            onChange={(e) => setContractType(e.target.value)}
+            name="contract_type"
+          />
+          <datalist id="cType">
+            {["fungible","non-fungible"].map(type => <option>{type}</option>)}
+          </datalist>
+        </p>
+
+        <p>
+          <label htmlFor="contract_address">Contract Address </label>
+          <input
+            type="text"
+            value={contractAddress}
+            onChange={(e) => setContractAddress(e.target.value)}
+            name="contract_address"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="image_url">Image URL </label>
+          <input
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            name="image_url"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="drop_date"> Drop Date </label>
+          <input
+            type="datetime-local"
+            value={dropDate}
+            onChange={(e) => setDropDate(e.target.value)}
+            name="drop_date"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="price_mint"> Mint Price (Ethereum) </label>
+          <input
+          type="decimal"
+            value={priceMint}
+            onChange={(e) => setPriceMint(e.target.value)}
+            name="price_mint"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="creator_royalty"> Creator Royalty </label>
+          <input
+          type="decimal"
+            value={creatorRoyalty}
+            onChange={(e) => setCreatorRoyalty(e.target.value)}
+            name="creator_royalty"
+          />
+        </p>
+
         <p>
           <label htmlFor="description"> Description </label>
           <textarea
@@ -78,16 +170,32 @@ console.log(">>>>> currentUser = ",currentUser)
             name="description"
           />
         </p>
-        {/* <p>
-          <label htmlFor="name"> Location </label>
+
+        <p>
+          <label htmlFor="token_metadata">Token MetaData URL</label>
           <input
             type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            name="location"
+            value={tokenMetadata}
+            onChange={(e) => setTokenMetadata(e.target.value)}
+            name="token_metadata"
           />
-        </p> */}
+        </p>
+
         <p>
+          <label htmlFor="nft_contract.id">Contract ID (only for Updating)</label>
+          <input
+            type="integer"
+            value={nftContractId}
+            list="cIDs"
+            onChange={(e) => setNftContractId(e.target.value)}
+            name="nft_contract.id"
+          />
+            <datalist id="cIDs">
+            {nftContracts.map(nftContract => <option>{nftContract.id}</option>)}
+          </datalist>
+        </p>
+
+        {/* <p>
           <label htmlFor="start_date"> Start Date </label>
           <input
             type="datetime-local"
@@ -95,30 +203,9 @@ console.log(">>>>> currentUser = ",currentUser)
             onChange={(e) => setStartDate(e.target.value)}
             name="start_date"
           />
-        </p>
-        <p>
-          <label htmlFor="end_date"> End Date </label>
-          <input
-            type="datetime-local"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            name="end_date"
-          />
-        </p>
-        {/* <p>
-          <label htmlfor="group_name">Group Name </label>
-          <input
-            type="text"
-            name="group_name"
-            value={groupName}
-            list="groups"
-            onChange={(e) => setGroupName(e.target.value)}
-          /> */}
-          {/* <datalist id="groups">
-            {groups.map(group => <option>{group.name}</option>)}
-          </datalist> */}
-        {/* </p> */}
-        {" "}<button type="submit">Add Proposal</button>
+        </p> */}
+
+        {" "}<button type="submit">{updateON ? "UPDATE NFT" : "CREATE NFT"}</button>
       </form>
     </div>
   )

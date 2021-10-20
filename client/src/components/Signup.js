@@ -9,7 +9,7 @@ function Signup({ setCurrentUser }) {
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    fetch('/signup', {
+    fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ function Signup({ setCurrentUser }) {
         </p>
         <p><button type="submit">Sign Up</button></p>
         <p>-- or --</p>
-        <p><Link to="/api/">Log In</Link></p>
+        <p><Link to="/">Log In</Link></p>
       </form>
     </div>
   )

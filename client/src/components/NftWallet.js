@@ -1,10 +1,10 @@
-import './index.css';
+import '../index.css';
 
 // Material-UI Imports
 import { Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
-import NFTcard from './NFTcard';
+import NFTcard from './NftCard';
 
 function NftWallet(props) {
 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Logo from './images/logo.png';
+import Logo from '../images/logo.png';
 
 
 const linkStyles = {
@@ -34,13 +34,13 @@ function NavBar({ color, title, description, changeColor }) {
                 color: "black",
                 }}
             >
-                NFT List
+                NFTs
             </NavLink>
         </div>  
 
         <div className="navlink">
             <NavLink
-                to="/NFTwallet"
+                to="/NftWallet"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -54,7 +54,7 @@ function NavBar({ color, title, description, changeColor }) {
 
         <div className="navlink">
             <NavLink
-                to="/NFTmint"
+                to="/NftMint"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -68,7 +68,7 @@ function NavBar({ color, title, description, changeColor }) {
 
         <div className="navlink">
             <NavLink
-                to="/NFTwhat"
+                to="/NftContractContainer"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -76,7 +76,7 @@ function NavBar({ color, title, description, changeColor }) {
                 color: "black",
                 }}
             >
-                NF What?
+                NFT Contracts
             </NavLink>
         </div> 
 

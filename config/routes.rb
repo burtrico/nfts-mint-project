@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get "/nfts", to: "nfts#show"
     post "/nfts", to: "nfts#create"
 
+    # get "/all_nft_contracts", to: "nft_contracts#index"
     get "/nft_contracts", to: "nft_contracts#show"
+    # get "/nft_contracts/:id", to: "nft_contracts#index"
     post "/nft_contracts", to: "nft_contracts#create"
     delete "/nft_contracts", to: "nft_contracts#delete"
 

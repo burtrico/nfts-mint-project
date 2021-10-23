@@ -30,7 +30,7 @@ function NftCard({nftObj, addToWallet, removeFromWallet}) {
         <img src={nftObj.image_url} className="nftImage" alt="no img" />
         <h3 className="cardname">name: {nftObj.name}</h3>  
         <h4 className="cardcontract">collection: {(nftObj.asset_contract) ? nftObj.asset_contract.name : nftObj.collection }</h4>
-        <div className="cardprice">{renderPrice()}</div>
+        {/* <div className="cardprice">{renderPrice()}</div> */}
         
 
       <div className="addButtonDiv" tabIndex="0">

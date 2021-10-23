@@ -7,6 +7,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [authChecked, setAuthChecked] = useState(false)
 
+
   useEffect(() => {
     fetch('/api/me', {
       credentials: 'include'
@@ -19,6 +20,7 @@ function App() {
           })
         } else {
           setAuthChecked(true)
+          console.log("AuthChecked successfully")
         }
       })
   }, [])

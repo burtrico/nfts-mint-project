@@ -17,6 +17,8 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   const [ description, setDescription ] = useState('')
   const [ tokenMetadata, setTokenMetadata ] = useState('')
   const [ nftContractId, setNftContractId ] = useState('')
+
+  // const [nftContract, setNftContract] = useState(null)
   
 
   // const cancelProposalButton = (proposal) => {
@@ -25,8 +27,8 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   //   }
   // }
 
-console.log(">> @@ > currentUser = ",currentUser)
-console.log(">> $$ >> NftContracts = ",nftContracts)
+console.log(">> 1 > currentUser = ",currentUser)
+console.log(">> 2 >> NftContracts = ",nftContracts)
 
 const formData = { collection_name: collectionName,
   name: name,
@@ -56,12 +58,6 @@ const formData = { collection_name: collectionName,
     setTokenMetadata('')
   }
   
-
-  // console.log(">>>>PROPOSALS:",proposals)
-
-
-  // const token_metadata = "eyJuYW1lIjogIkJhZyAjMSIsICJkZXNjcmlwdGlvbiI6ICJMb290IGlzIHJhbmRvbWl6ZWQgYWR2ZW50dXJlciBnZWFyIGdlbmVyYXRlZCBhbmQgc3RvcmVkIG9uIGNoYWluLiBTdGF0cywgaW1hZ2VzLCBhbmQgb3RoZXIgZnVuY3Rpb25hbGl0eSBhcmUgaW50ZW50aW9uYWxseSBvbWl0dGVkIGZvciBvdGhlcnMgdG8gaW50ZXJwcmV0LiBGZWVsIGZyZWUgdG8gdXNlIExvb3QgaW4gYW55IHdheSB5b3Ugd2FudC4iLCAiaW1hZ2UiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhCeVpYTmxjblpsUVhOd1pXTjBVbUYwYVc4OUluaE5hVzVaVFdsdUlHMWxaWFFpSUhacFpYZENiM2c5SWpBZ01DQXpOVEFnTXpVd0lqNDhjM1I1YkdVK0xtSmhjMlVnZXlCbWFXeHNPaUIzYUdsMFpUc2dabTl1ZEMxbVlXMXBiSGs2SUhObGNtbG1PeUJtYjI1MExYTnBlbVU2SURFMGNIZzdJSDA4TDNOMGVXeGxQanh5WldOMElIZHBaSFJvUFNJeE1EQWxJaUJvWldsbmFIUTlJakV3TUNVaUlHWnBiR3c5SW1Kc1lXTnJJaUF2UGp4MFpYaDBJSGc5SWpFd0lpQjVQU0l5TUNJZ1kyeGhjM005SW1KaGMyVWlQaUpIY21sdElGTm9iM1YwSWlCSGNtRjJaU0JYWVc1a0lHOW1JRk5yYVd4c0lDc3hQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJME1DSWdZMnhoYzNNOUltSmhjMlVpUGtoaGNtUWdUR1ZoZEdobGNpQkJjbTF2Y2p3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlOakFpSUdOc1lYTnpQU0ppWVhObElqNUVhWFpwYm1VZ1NHOXZaRHd2ZEdWNGRENDhkR1Y0ZENCNFBTSXhNQ0lnZVQwaU9EQWlJR05zWVhOelBTSmlZWE5sSWo1SVlYSmtJRXhsWVhSb1pYSWdRbVZzZER3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlNVEF3SWlCamJHRnpjejBpWW1GelpTSStJa1JsWVhSb0lGSnZiM1FpSUU5eWJtRjBaU0JIY21WaGRtVnpJRzltSUZOcmFXeHNQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE1qQWlJR05zWVhOelBTSmlZWE5sSWo1VGRIVmtaR1ZrSUV4bFlYUm9aWElnUjJ4dmRtVnpQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE5EQWlJR05zWVhOelBTSmlZWE5sSWo1T1pXTnJiR0ZqWlNCdlppQkZibXhwWjJoMFpXNXRaVzUwUEM5MFpYaDBQangwWlhoMElIZzlJakV3SWlCNVBTSXhOakFpSUdOc1lYTnpQU0ppWVhObElqNUhiMnhrSUZKcGJtYzhMM1JsZUhRK1BDOXpkbWMrIn0="
-  // console.log(token_metadata.json())
   const [updateON, setUpdateON] = useState(false)
 
   const handleToggle = () => {
@@ -69,7 +65,52 @@ const formData = { collection_name: collectionName,
     else{ setUpdateON(true) }
     console.log("TOGGLED!!! updateON =",updateON)
 }
- 
+
+// const cancelNftContractButton = (nftContract3) => {
+//   if (nftContract3) {
+//     // .user_is_creator
+//     return ( <p> <button onClick={handleCancel}>Cancel NFT Contract</button> </p> ) } }
+
+// const handleCancel = (e) => {
+//   e.target.
+//   cancelNftContract(nftContract.id);
+//   // history.push('/api/proposals')
+// }
+
+
+// const handleRender = (e) => {
+//   renderNftContract(nftContract.id);
+//   // history.push('/api/proposals')
+// }
+
+// const renderNftContract = (nftContractId) => {
+//   // if (nftContractId) {
+//   const nftContract2 = nftContracts.filter(contract => contract.id === nftContractId)
+//   setNftContract(nftContract2)
+//   console.log("RENDER:",nftContract2)
+//   return (
+//     <div>
+   
+//       {nftContract2.collection_name ? <h1>Collection Name: {nftContract2.collection_name}</h1> : <br/> }
+//       {nftContract2.name ? <h1>Collection Name: {nftContract2.name}</h1> : <br/> }
+//       <p>Contract Type: {nftContract2.contract_type}</p>
+//       <p>Contract Address: {nftContract2.contract_address}</p>
+//       {cancelNftContractButton(nftContract2)}
+//       <small>Creator: {currentUser}</small>
+  
+//       <p>Image Url: {nftContract2.image_url}</p>
+//       <p>Drop Date: {nftContract2.drop_date}</p>
+//       <p>Description: {nftContract2.description}</p>
+//       <p>Price Mint: {nftContract2.price_mint}</p>
+//       <p>Creator Royalty: {nftContract2.creator_royalty}</p>
+//       <p>Token Metadata: {nftContract2.token_metadata}</p>
+  
+//     </div>
+//   )}
+//   else {console.log("No Single NftContract Loaded Yet")}
+// }
+
+
 
   return (
     <div>
@@ -215,4 +256,7 @@ const formData = { collection_name: collectionName,
   )
 }
 
-export default NftContractList
+
+
+
+// export default NftContractList

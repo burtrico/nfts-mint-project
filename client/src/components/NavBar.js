@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from '../images/logo.png';
-
+import React, { useState } from 'react'
+// import CloudinaryUpload from './CloudinaryUpload'
 
 const linkStyles = {
     padding: "3px 10px 3px 10px",
@@ -11,8 +12,7 @@ const linkStyles = {
 
 
 
-
-function NavBar({ color, title, description, changeColor }) {
+function NavBar({setCurrentUser, currentUser, handleLogout}) {
     
 
     return(<>
@@ -20,13 +20,9 @@ function NavBar({ color, title, description, changeColor }) {
 <div className="title"><img src={Logo} alt="Logo"/></div>
     <div className="NavBar" >
 
-                {/* <NavLink to="/api/nfts">- NFTs -</NavLink>
-            <NavLink to="/api/nft_contracts">- NFT Contracts -</NavLink>
-            <NavLink to="/api/nft_contracts">- NFT Contracts -</NavLink> */}
-
         <div className="navlink">
             <NavLink
-                to="/nfts"
+                to="/"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -68,8 +64,7 @@ function NavBar({ color, title, description, changeColor }) {
 
         <div className="navlink">
             <NavLink
-                // to="/NftContractContainer"
-                to="/nft_contracts"
+                to="/NftContractContainer"
                 exact
                 style={linkStyles}
                 activeStyle={{
@@ -79,13 +74,10 @@ function NavBar({ color, title, description, changeColor }) {
             >
                 NFT Contracts
             </NavLink>
+            <hr/>
+            <button onClick={handleLogout}>Logout</button>
         </div> 
 
-        
-
-        
-
-        
 
     </div>
 </>)

@@ -231,10 +231,10 @@ https://material-ui.com/components/grid/        */
 .NftContractContainerDiv {
   background-color: rgb(184, 184, 184);
   border-radius: 20px;
-  width: 40%;
+  width: auto;
   margin-top: 5%;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .nftContractLink {

@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import {useState} from 'react'
 
-function NftMint({walletNFTs, handleAddCard}) {
+function NftMint({walletNFTs, addToWallet}) {
 
     const [formData, formDataSetter] = useState({
         image_url: "",
@@ -50,7 +50,7 @@ function NftMint({walletNFTs, handleAddCard}) {
 
         // Use handleAddCard from props to add the newCard JS object
         // to the existing array of Card objects (cards)
-        handleAddCard(newCard);
+        addToWallet(newCard);
 
         // Clear out input values upon form submission using formDataSetter
         formDataSetter({

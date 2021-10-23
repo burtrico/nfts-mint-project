@@ -6,7 +6,7 @@ import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import NFTcard from './NftCard';
 
-function NftWallet(props) {
+function NftWallet({walletNFTs, removeFromWallet}) {
 
 
     return(
@@ -21,7 +21,7 @@ function NftWallet(props) {
                 direction="row"
             >
                         
-            { props.walletNFTs && props.walletNFTs.map(objectIn => {
+            { walletNFTs && walletNFTs.map(objectIn => {
             return(
                 <Grid
                   className="nftCard"
@@ -31,7 +31,7 @@ function NftWallet(props) {
 
                   <NFTcard
                    nftObj={objectIn}
-                   removeFromWallet={props.removeFromWallet}
+                   removeFromWallet={removeFromWallet}
 
                   />
                 </Grid>

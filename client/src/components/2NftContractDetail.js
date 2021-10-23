@@ -117,4 +117,4 @@ console.log('NFT Contract ID:',nftContractId)
   }
 }
 
-export default NftContractDetail
+// export default NftContractDetail

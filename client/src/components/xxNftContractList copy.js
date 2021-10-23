@@ -17,8 +17,7 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   const [ description, setDescription ] = useState('')
   const [ tokenMetadata, setTokenMetadata ] = useState('')
   const [ nftContractId, setNftContractId ] = useState('')
-
-
+  
 
   // const cancelProposalButton = (proposal) => {
   //   if (proposal.user_is_creator) {
@@ -26,8 +25,8 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   //   }
   // }
 
-console.log(">> 1 > currentUser = ",currentUser)
-console.log(">> 2 >> NftContracts = ",nftContracts)
+console.log(">> @@ > currentUser = ",currentUser)
+console.log(">> $$ >> NftContracts = ",nftContracts)
 
 const formData = { collection_name: collectionName,
   name: name,
@@ -57,6 +56,12 @@ const formData = { collection_name: collectionName,
     setTokenMetadata('')
   }
   
+
+  // console.log(">>>>PROPOSALS:",proposals)
+
+
+  // const token_metadata = "eyJuYW1lIjogIkJhZyAjMSIsICJkZXNjcmlwdGlvbiI6ICJMb290IGlzIHJhbmRvbWl6ZWQgYWR2ZW50dXJlciBnZWFyIGdlbmVyYXRlZCBhbmQgc3RvcmVkIG9uIGNoYWluLiBTdGF0cywgaW1hZ2VzLCBhbmQgb3RoZXIgZnVuY3Rpb25hbGl0eSBhcmUgaW50ZW50aW9uYWxseSBvbWl0dGVkIGZvciBvdGhlcnMgdG8gaW50ZXJwcmV0LiBGZWVsIGZyZWUgdG8gdXNlIExvb3QgaW4gYW55IHdheSB5b3Ugd2FudC4iLCAiaW1hZ2UiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhCeVpYTmxjblpsUVhOd1pXTjBVbUYwYVc4OUluaE5hVzVaVFdsdUlHMWxaWFFpSUhacFpYZENiM2c5SWpBZ01DQXpOVEFnTXpVd0lqNDhjM1I1YkdVK0xtSmhjMlVnZXlCbWFXeHNPaUIzYUdsMFpUc2dabTl1ZEMxbVlXMXBiSGs2SUhObGNtbG1PeUJtYjI1MExYTnBlbVU2SURFMGNIZzdJSDA4TDNOMGVXeGxQanh5WldOMElIZHBaSFJvUFNJeE1EQWxJaUJvWldsbmFIUTlJakV3TUNVaUlHWnBiR3c5SW1Kc1lXTnJJaUF2UGp4MFpYaDBJSGc5SWpFd0lpQjVQU0l5TUNJZ1kyeGhjM005SW1KaGMyVWlQaUpIY21sdElGTm9iM1YwSWlCSGNtRjJaU0JYWVc1a0lHOW1JRk5yYVd4c0lDc3hQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJME1DSWdZMnhoYzNNOUltSmhjMlVpUGtoaGNtUWdUR1ZoZEdobGNpQkJjbTF2Y2p3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlOakFpSUdOc1lYTnpQU0ppWVhObElqNUVhWFpwYm1VZ1NHOXZaRHd2ZEdWNGRENDhkR1Y0ZENCNFBTSXhNQ0lnZVQwaU9EQWlJR05zWVhOelBTSmlZWE5sSWo1SVlYSmtJRXhsWVhSb1pYSWdRbVZzZER3dmRHVjRkRDQ4ZEdWNGRDQjRQU0l4TUNJZ2VUMGlNVEF3SWlCamJHRnpjejBpWW1GelpTSStJa1JsWVhSb0lGSnZiM1FpSUU5eWJtRjBaU0JIY21WaGRtVnpJRzltSUZOcmFXeHNQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE1qQWlJR05zWVhOelBTSmlZWE5sSWo1VGRIVmtaR1ZrSUV4bFlYUm9aWElnUjJ4dmRtVnpQQzkwWlhoMFBqeDBaWGgwSUhnOUlqRXdJaUI1UFNJeE5EQWlJR05zWVhOelBTSmlZWE5sSWo1T1pXTnJiR0ZqWlNCdlppQkZibXhwWjJoMFpXNXRaVzUwUEM5MFpYaDBQangwWlhoMElIZzlJakV3SWlCNVBTSXhOakFpSUdOc1lYTnpQU0ppWVhObElqNUhiMnhrSUZKcGJtYzhMM1JsZUhRK1BDOXpkbWMrIn0="
+  // console.log(token_metadata.json())
   const [updateON, setUpdateON] = useState(false)
 
   const handleToggle = () => {
@@ -64,107 +69,15 @@ const formData = { collection_name: collectionName,
     else{ setUpdateON(true) }
     console.log("TOGGLED!!! updateON =",updateON)
 }
+ 
 
-const cancelNftContractButton = (nftContract3) => {
-  if (nftContract3) {
-    // .user_is_creator
-    return ( <p> <button onClick={handleCancel}>Cancel NFT Contract</button> </p> ) } }
-
-const handleCancel = (e) => {
-  e.target.
-  cancelNftContract(nftContract.id);
-  // history.push('/api/proposals')
-}
-
-
-// const handleRender = (e) => {
-//   renderNftContract(nftContract.id);
-//   // history.push('/api/proposals')
-// }
-
-// const fetchNftContractCallback = useCallback(
-//   () => {
-//     fetch(`/api/nft_contracts/${nftContract.id}`, {
-//       credentials: 'include'
-//     })
-//       .then(res => res.json())
-//       .then(nftContract => {
-//         console.log(' >> Callback:',nftContract)
-//         setNftContract(nftContract)
-//         // renderNftContract(nftContract)
-
-//       })
-//   },
-//   [nftContractId],
-// )
-
-const renderNftContract = () => {
-  if (nftContract) {
   return (
     <div>
-   
-      {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
-      {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
-      <p>Contract Type: {nftContract.contract_type}</p>
-      <p>Contract Address: {nftContract.contract_address}</p>
-      {cancelNftContractButton(nftContract)}
-      <small>Creator: {currentUser}</small>
-  
-      <p>Image Url: {nftContract.image_url}</p>
-      <p>Drop Date: {nftContract.drop_date}</p>
-      <p>Description: {nftContract.description}</p>
-      <p>Price Mint: {nftContract.price_mint}</p>
-      <p>Creator Royalty: {nftContract.creator_royalty}</p>
-      <p>Token Metadata: {nftContract.token_metadata}</p>
-  
-    </div>
-  )}
-  else {<><p>Select an NFT Contract to view attributes.</p></>}
-}
-
-const [contractName, setContractName] = useState(null)
-const [nftContract, setNftContract] = useState(null)
-
-
-
-const chooseContract = (nftContractName) => {
-const chosenContract = nftContracts.find(contract => contract.collection_name === nftContractName)
-if (chosenContract) { setNftContract(chosenContract) }
-else { nftContracts.find(contract => contract.name === nftContractName) 
-  setNftContract(chosenContract) }
-}
-
-
-
-// const resetNftContractName = useCallback(
-//   () => {
-//     setNftContractName(e.target.value)
-
-  return (
-    <div className="NftContractContainerDiv">
-         
-        <div className="NftContractDiv">
-          <h1>NFT Contracts</h1>
-      
-          <input name="nftContractList"  list="cNames" value={contractName} onChange={e => {
-            // setNftContractName(e.target.value)
-            chooseContract(e.target.value)
-            console.log("HERE!!!!!!!!!",nftContract)
-            
-          }}/>
-          <datalist id="cNames">
-            {nftContracts.map(nftContract => <option>{nftContract.collection_name ? nftContract.collection_name : nftContract.name}</option>)}
-          </datalist>
-
-          {/* {console.log("onChange ===",nftContractName)} */}
-        </div>
-
-        {renderNftContract()}
-
-      {/* <ul>
+      <h1>NFT Contracts</h1>
+      <ul>
       {nftContracts.length > 0 ? nftContracts.map(nftContract => (<li  key={nftContract.id}><Link className="nftContractLink" to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name}{nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
       )) : ""}
-      </ul> */}
+      </ul>
       <h3>Create or Update an NFT Contract</h3>
       <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>
@@ -302,7 +215,4 @@ else { nftContracts.find(contract => contract.name === nftContractName)
   )
 }
 
-
-
-
-export default NftContractList
+// export default NftContractList

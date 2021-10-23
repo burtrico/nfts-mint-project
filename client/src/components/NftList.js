@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 
 
-function NftList(props) {
+function NftList({ apiData, addToWallet }) {
 
 
     return(
@@ -34,7 +34,7 @@ function NftList(props) {
                 // justifyContent="space-between"
             >
     {
-        props.data.map(
+        apiData.map(
             function(objectIn){
                   return(
                     <Grid
@@ -45,7 +45,7 @@ function NftList(props) {
                     >
                     <NFTcard
                       nftObj={objectIn}
-                      addToWallet={props.addToWallet}
+                      addToWallet={addToWallet}
                       
                     />
                     </Grid>

@@ -1,8 +1,8 @@
 class CreateNfts < ActiveRecord::Migration[6.1]
   def change
     create_table :nfts do |t|
-      t.belongs_to :nft_contract, null: false, foreign_key: true
-      t.belongs_to :user, null: false, foreign_key: true
+      t.belongs_to :nft_contract, null: true, foreign_key: true
+      t.belongs_to :user, null: true, foreign_key: true
       t.string :collection_name
       t.string :name
       t.string :image_url
@@ -14,6 +14,7 @@ class CreateNfts < ActiveRecord::Migration[6.1]
       t.text :description
       t.string :token_metadata
       t.string :token_id
+      t.integer :count
 
       t.timestamps
     end

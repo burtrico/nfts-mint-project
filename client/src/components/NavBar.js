@@ -74,9 +74,19 @@ function NavBar({setCurrentUser, currentUser, handleLogout}) {
             >
                 NFT Contracts
             </NavLink>
-            <hr/>
-            <button onClick={handleLogout}>Logout</button>
+            {/* <hr/> */}
+            
         </div> 
+
+        <div className="navlink">
+        <button className="navButton" onClick={handleLogout}                 
+                style={linkStyles}
+                // activeStyle={{
+                // background: "white",
+                // color: "black",
+                // }} 
+                >Logout</button>
+        </div>
 
 
     </div>

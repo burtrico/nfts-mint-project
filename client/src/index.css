@@ -93,10 +93,16 @@ https://material-ui.com/components/grid/        */
 }
 
 .navlink {
-
   display: inline;
-  margin: 2px 40px 10px 0;
-  
+  margin: 2px 15px 10px 0;
+  background-color: transparent;
+}
+
+.navButton {
+  display: inline;
+  margin: 2px 15px 10px 0;
+  color: rgb(138, 138, 138);
+  background-color: transparent;
 }
 
 

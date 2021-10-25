@@ -161,10 +161,10 @@ else { nftContracts.find(contract => contract.name === nftContractName)
 
         {/* {renderNftContract()} */}
 
-      {/* <ul>
+      <ul>
       {nftContracts.length > 0 ? nftContracts.map(nftContract => (<li  key={nftContract.id}><Link className="nftContractLink" to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name}{nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
       )) : ""}
-      </ul> */}
+      </ul>
       <h3>Create or Update an NFT Contract</h3>
       <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>

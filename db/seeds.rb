@@ -30,17 +30,17 @@ nft_contract1 = NftContract.create(user_id: user1.id, contract_type: "non-fungli
 
 puts ">>> Nft Contracts Seeded <<<"
 
-nft1 = Nft.create(nft_contract_id: nft_contract1, user_id: user1, collection_name: nft_contract1.collection_name,
+nft1 = Nft.create(nft_contract_id: nft_contract1, user_id: user1.id, collection_name: nft_contract1.collection_name,
       name: "Snuggly Snufkin #1", image_url: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d", 
       background_color: "", created_date: "10/21/2021 12:00", price_current: 1, last_sale: 0.5, num_sales: 1,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata)
 
-nft2 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user3.id, collection_name: nft_contract1.collection_name,
+nft2 = Nft.create(nft_contract_id: nft_contract1.id, user: user3.id, collection_name: nft_contract1.collection_name,
       name: "Snuggly Snufkin #2", image_url: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d", 
       background_color: "", created_date: "10/21/2021 12:00", price_current: 1.5, last_sale: 0.6, num_sales: 2,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata)
 
-nft3 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user5.id, collection_name: nft_contract1.collection_name,
+nft3 = Nft.create(nft_contract_id: nft_contract1.id, user: user5.id, collection_name: nft_contract1.collection_name,
       name: "Snuggly Snufkin #3", image_url: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49ed3252c0b2ffb49cf8b508892e452d", 
       background_color: "", created_date: "10/21/2021 12:00", price_current: 0.9, last_sale: 0.3, num_sales: 1,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata)

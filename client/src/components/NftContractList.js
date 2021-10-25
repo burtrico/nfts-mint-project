@@ -71,7 +71,7 @@ const cancelNftContractButton = (nftContract3) => {
     return ( <p> <button onClick={handleCancel}>Cancel NFT Contract</button> </p> ) } }
 
 const handleCancel = (e) => {
-  // e.target.
+  console.log("handleCancel e.target.value ===", e.target.value)
   cancelNftContract(nftContract.id);
   // history.push('/api/proposals')
 }
@@ -98,29 +98,29 @@ const handleCancel = (e) => {
 //   [nftContractId],
 // )
 
-// const renderNftContract = () => {
-//   if (nftContract) {
-//   return (
-//     <div>
+const renderNftContract = () => {
+  if (nftContract) {
+  return (
+    <div>
    
-//       {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
-//       {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
-//       <p>Contract Type: {nftContract.contract_type}</p>
-//       <p>Contract Address: {nftContract.contract_address}</p>
-//       {cancelNftContractButton(nftContract)}
-//       <small>Creator: {currentUser}</small>
+      {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
+      {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
+      <p>Contract Type: {nftContract.contract_type}</p>
+      <p>Contract Address: {nftContract.contract_address}</p>
+      {cancelNftContractButton(nftContract)}
+      <small>Creator: {currentUser}</small>
   
-//       <p>Image Url: {nftContract.image_url}</p>
-//       <p>Drop Date: {nftContract.drop_date}</p>
-//       <p>Description: {nftContract.description}</p>
-//       <p>Price Mint: {nftContract.price_mint}</p>
-//       <p>Creator Royalty: {nftContract.creator_royalty}</p>
-//       <p>Token Metadata: {nftContract.token_metadata}</p>
+      <p>Image Url: {nftContract.image_url}</p>
+      <p>Drop Date: {nftContract.drop_date}</p>
+      <p>Description: {nftContract.description}</p>
+      <p>Price Mint: {nftContract.price_mint}</p>
+      <p>Creator Royalty: {nftContract.creator_royalty}</p>
+      <p>Token Metadata: {nftContract.token_metadata}</p>
   
-//     </div>
-//   )}
-//   else {<><p>Select an NFT Contract to view attributes.</p></>}
-// }
+    </div>
+  )}
+  else {<><p>Select an NFT Contract to view attributes.</p></>}
+}
 
 const [contractName, setContractName] = useState(null)
 const [nftContract, setNftContract] = useState(null)
@@ -150,7 +150,7 @@ else { nftContracts.find(contract => contract.name === nftContractName)
             // setNftContractName(e.target.value)
             chooseContract(e.target.value)
             console.log("HERE!!!!!!!!!",nftContract)
-            
+            renderNftContract()
           }}/>
           <datalist id="cNames">
             {nftContracts.map(nftContract => <option>{nftContract.collection_name ? nftContract.collection_name : nftContract.name}</option>)}

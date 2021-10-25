@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import NftContractList from './NftContractList'
-import NftContractDetail from './NftContractDetail'
+// import NftContractDetail from './NftContractDetail'
 
 function NftContractContainer({currentUser}) {
   const [nftContracts, setNftContracts] = useState([])

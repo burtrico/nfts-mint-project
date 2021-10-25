@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
     t.integer "num_sales"
     t.text "description"
     t.string "token_metadata"
+    t.string "token_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["nft_contract_id"], name: "index_nfts_on_nft_contract_id"

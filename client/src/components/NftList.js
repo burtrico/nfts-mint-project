@@ -12,48 +12,43 @@ function NftList({ apiData, addToWallet }) {
   console.log("@@@ STARTING NftList component")
 
 
-    // return(
-    //     <div id="itemList">
-    //       <Container
-    //         align="center"       
-    //       >    
-            
+    return(
+        <div id="itemList">
+          <Container align="center"  >    
+            <Box  m={5}     >
+            <Grid
+                // gap={10}
+                // row-gap={10}
+                container
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                spacing={10}
+                // justifyContent="space-between"
+            >
+            { apiData.map(
+            function(objectIn){
+                  return(
+                    <Grid
+                      className="nftCard"
+                      key={objectIn.id}
+                      item xs={3} 
+                    >
+                    <NFTcard
+                      nftObj={objectIn}
+                      addToWallet={addToWallet}
+                    />
+                    </Grid>
+            )   })   }
 
-    //         <Box  m={5}     >
-    //         <Grid
-    //             // gap={10}
-    //             // row-gap={10}
-    //             container
-    //             direction="row"
-    //             alignItems="center"
-    //             justifyContent="center"
-    //             spacing={10}
-    //             // justifyContent="space-between"
-    //         >
-    // { apiData.map(
-    //         function(objectIn){
-    //               return(
-    //                 <Grid
-    //                   className="nftCard"
-    //                   key={objectIn.id}
-    //                   item xs={3} 
-    //                 >
-    //                 <NFTcard
-    //                   nftObj={objectIn}
-    //                   addToWallet={addToWallet}
-    //                 />
-    //                 </Grid>
-    //   )   })   }
+            </Grid>
+            </Box>
+            </Container>  
+        </div>
+    )
 
-    //         </Grid>
-    //         </Box>
-    //         </Container>  
-    //     </div>
-    // )
 
-    console.log("@@@ ENDING NftList component")
-
-    return( <div></div> )
+    // return( <div></div> )
 }
 
 export default NftList;

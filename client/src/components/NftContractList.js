@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import NftContractDetail from './NftContractDetail'
 
+
 function NftContractList({ currentUser, nftContracts, cancelNftContract, createNftContract, updateNftContract }) {
   // const now = new Date();
   // now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
@@ -111,6 +112,11 @@ const handleCancel = (e) => {
 // }
 
 const [nftContract, setNftContract] = useState('')
+console.log("N F T CONTRACT = ",nftContract)
+// const toggleContract = () => { setIsOpen(!isOpen); }
+
+// const toggleContract = () => { setIsOpen(!isOpen); }
+
 
 // const renderNftContract = () => {
 //   console.log()
@@ -133,9 +139,9 @@ const [nftContract, setNftContract] = useState('')
 //     setNftContractName(e.target.value)
 
   return (
-    <div className="NftContractContainerDiv">
+    <div className="contractDivContainer">
          
-        <div className="NftContractDiv">
+        <div className="contractDivList">
           <h1>NFT Contracts</h1>
           <ul>
             {nftContracts && nftContracts.map(nftContract => (<li  key={nftContract.id}><button className="nftContractButton" onClick={()=>setNftContract(nftContract)}>{nftContract.collection_name}{nftContract.name}
@@ -155,7 +161,7 @@ const [nftContract, setNftContract] = useState('')
               {nftContract.collection_name ? nftContract.collection_name : nftContract.name}</option>)}
           </datalist> */}
 
-        </div>
+        
 
         {/* {renderNftContract()} */}
 
@@ -166,7 +172,7 @@ const [nftContract, setNftContract] = useState('')
               <p>Contract Type: {nftContract.contract_type}</p>
               <p>Contract Address: {nftContract.contract_address}</p>
               {cancelNftContractButton(nftContract)}
-              <small>Creator: {currentUser}</small>
+              <small>Creator: {nftContract.user.ens_domain}</small>
           
               <p>Image Url: {nftContract.image_url}</p>
               <p>Drop Date: {nftContract.drop_date}</p>
@@ -177,12 +183,13 @@ const [nftContract, setNftContract] = useState('')
           </>}
         // handleClose={togglePopup}
           nftContract={nftContract}
-          handleCancel={handleCancel}
-          cancelNftContractButton={cancelNftContractButton}
+          // handleCancel={handleCancel}
+          // cancelNftContractButton={cancelNftContractButton}
           />}
         {!nftContract && <><p>Select an NFT Contract to view attributes.</p></>}
 
-
+        </div>
+        <div className="contractDivForm">
       <h3>Create or Update an NFT Contract</h3>
       <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>
@@ -316,6 +323,8 @@ const [nftContract, setNftContract] = useState('')
 
         {" "}<button type="submit">{updateON ? "UPDATE NFT" : "CREATE NFT"}</button>
       </form>
+      </div>
+
     </div>
   )
 }

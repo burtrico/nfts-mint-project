@@ -1,7 +1,7 @@
 class Api::NftContractsController < ApplicationController
     before_action :edit_nft_contract
     # , only: [:show, :update, :destroy]
-    # before_action :authorize_user, only: [:update, :destroy]
+    before_action :authorize_user, only: [:update, :destroy]
   
     def index
       nft_contracts = NftContract.all
@@ -16,7 +16,6 @@ class Api::NftContractsController < ApplicationController
   
     def create
       nft_contract = NftContract.new(nft_contract_params)
-    #   ^^^^^^^^^^^^^^^^^^^^          ^^^^^^^^^^^^ !!!!
       if nft_contract.save
         render json: nft_contract, status: :created
       else
@@ -42,7 +41,7 @@ class Api::NftContractsController < ApplicationController
   
     def nft_contract_params
       params.permit(:id, :user_id, :contract_type, :contract_address, :collection_name, :name, :image_url, :drop_date, :price_mint,
-        :creator_royalty, :description, :token_metadata)
+        :creator_royalty, :description, :token_metadata, :count)
     end
 
     # t.string :contract_type

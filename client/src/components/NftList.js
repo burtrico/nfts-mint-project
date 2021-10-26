@@ -5,7 +5,8 @@ import '../index.css';
 import { createChainedFunction, Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
-
+import Opensea from '../images/opensea.png';
+import Powered from '../images/powered.png';
 
 function NftList({ apiData, addToWallet }) {
 
@@ -44,6 +45,11 @@ function NftList({ apiData, addToWallet }) {
             </Grid>
             </Box>
             </Container>  
+
+        <div class="footer">
+          <img  src={Powered} alt="powered by"/> 
+          <a target="_blank" href="https://docs.opensea.io/"><img class="openlogo" src={Opensea} alt="Opensea"/></a>
+          </div>
         </div>
     )
 

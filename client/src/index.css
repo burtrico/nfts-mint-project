@@ -186,6 +186,7 @@ https://material-ui.com/components/grid/        */
   text-align: center;
   display: block;
   color: white;
+  margin-bottom: 5%;
 }
 .openlogo {
   border-color: rgb(88, 88, 88);
@@ -247,13 +248,38 @@ https://material-ui.com/components/grid/        */
 
 }
 
-.NftContractContainerDiv {
-  background-color: rgb(184, 184, 184);
-  border-radius: 20px;
+.contractDivContainer {
+  display: block;
+  background-color: transparent;
+  /* border-radius: 20px; */
   width: auto;
   margin-top: 5%;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.contractDivList {
+  background-color: rgb(247, 248, 250);
+  border-radius: 20px;
+  width: 40%;
+  margin-top: 5%;
+  margin-right: 5%;
+  float: right;
+  text-align: left;
+  outline: 4px solid red;
+  outline-offset: 15px;
+  
+}
+
+.contractDivForm {
+  background-color: rgb(247, 248, 250);
+  border-radius: 20px;
+  width: 40%;
+  margin-top: 5%;
+  margin-left: 5%;
+  float: left;
+  text-align: left;
+  
 }
 
 .nftContractLink {

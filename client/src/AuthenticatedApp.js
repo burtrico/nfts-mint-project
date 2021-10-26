@@ -7,8 +7,6 @@ import NftList from "./components/NftList";
 import NftWallet from "./components/NftWallet";
 import NftMint from "./components/NftMint";
 import NftContractContainer from './components/NftContractContainer'
-import Opensea from './images/opensea.png';
-import Powered from './images/powered.png';
 
 
 
@@ -189,11 +187,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
-      <div class="footer">
-        <img  src={Powered} alt="powered by"/>
-            
-        <a target="_blank" href="https://docs.opensea.io/"><img class="openlogo" src={Opensea} alt="Opensea"/></a>
-        </div>
+
     </div>
   )
 }

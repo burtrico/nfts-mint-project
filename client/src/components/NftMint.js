@@ -7,6 +7,7 @@ import { Box } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import {useState} from 'react'
 
+
 function NftMint({walletNFTs, addToWallet}) {
 
     const [formData, formDataSetter] = useState({
@@ -126,26 +127,7 @@ function NftMint({walletNFTs, addToWallet}) {
                   </Container>
                  
 
-
-
-
-
-        
-         
-          
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-        
+      </div>        
     )
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import NftContractDetail from './NftContractDetail'
 
 function NftContractList({ currentUser, nftContracts, cancelNftContract, createNftContract, updateNftContract }) {
   // const now = new Date();
@@ -26,8 +27,8 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   //   }
   // }
 
-console.log(">> 1 > currentUser = ",currentUser)
-console.log(">> 2 >> NftContracts = ",nftContracts)
+// console.log(">> 1 > currentUser = ",currentUser)
+// console.log(">> 2 >> NftContracts = ",nftContracts)
 
 const formData = { collection_name: collectionName,
   name: name,
@@ -62,7 +63,7 @@ const formData = { collection_name: collectionName,
   const handleToggle = () => {
     if (updateON) { setUpdateON(false) } 
     else{ setUpdateON(true) }
-    console.log("TOGGLED!!! updateON =",updateON)
+    // console.log("TOGGLED!!! updateON =",updateON)
 }
 
 const cancelNftContractButton = (nftContract3) => {
@@ -98,41 +99,32 @@ const handleCancel = (e) => {
 //   [nftContractId],
 // )
 
-const renderNftContract = () => {
-  if (nftContract) {
-  return (
-    <div>
+
+
+// const [contractName, setContractName] = useState('')
+
+// const chooseContract = (nameValue) => {
+// const selectedContract = nftContracts.find(contract => contract.collection_name === nameValue)
+// if (selectedContract) { setNftContract(selectedContract) }
+// else { const fungibleContract = nftContracts.find(contract => contract.name === nameValue) 
+//   setNftContract(fungibleContract) }
+// }
+
+const [nftContract, setNftContract] = useState('')
+
+// const renderNftContract = () => {
+//   console.log()
+//   // if (nftContract) {
+//   return (
+//     <div>
    
-      {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
-      {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
-      <p>Contract Type: {nftContract.contract_type}</p>
-      <p>Contract Address: {nftContract.contract_address}</p>
-      {cancelNftContractButton(nftContract)}
-      <small>Creator: {currentUser}</small>
+
   
-      <p>Image Url: {nftContract.image_url}</p>
-      <p>Drop Date: {nftContract.drop_date}</p>
-      <p>Description: {nftContract.description}</p>
-      <p>Price Mint: {nftContract.price_mint}</p>
-      <p>Creator Royalty: {nftContract.creator_royalty}</p>
-      <p>Token Metadata: {nftContract.token_metadata}</p>
-  
-    </div>
-  )}
-  else {<><p>Select an NFT Contract to view attributes.</p></>}
-}
-
-const [contractName, setContractName] = useState(null)
-const [nftContract, setNftContract] = useState(null)
-
-
-
-const chooseContract = (nftContractName) => {
-const chosenContract = nftContracts.find(contract => contract.collection_name === nftContractName)
-if (chosenContract) { setNftContract(chosenContract) }
-else { nftContracts.find(contract => contract.name === nftContractName) 
-  setNftContract(chosenContract) }
-}
+//     </div>
+//   // )}
+//   // else {<><p>Select an NFT Contract to view attributes.</p></>}
+//   )
+// }
 
 
 
@@ -145,26 +137,52 @@ else { nftContracts.find(contract => contract.name === nftContractName)
          
         <div className="NftContractDiv">
           <h1>NFT Contracts</h1>
-      
-          <input name="nftContractList"  list="cNames" value={contractName} onChange={e => {
+          <ul>
+            {nftContracts && nftContracts.map(nftContract => (<li  key={nftContract.id}><button className="nftContractButton" onClick={()=>setNftContract(nftContract)}>{nftContract.collection_name}{nftContract.name}
+            </button> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> ) ) }
+          </ul>
+          {/* <input type="select" list="cNames" value={contractName} 
+            onChange={e => {
             // setNftContractName(e.target.value)
             chooseContract(e.target.value)
             console.log("HERE!!!!!!!!!",nftContract)
-            renderNftContract()
-          }}/>
+            // renderNftContract()
+            }}
+            name="nftContractList" 
+          />
           <datalist id="cNames">
-            {nftContracts.map(nftContract => <option>{nftContract.collection_name ? nftContract.collection_name : nftContract.name}</option>)}
-          </datalist>
+            {nftContracts.map(nftContract => <option key={nftContract.id} value={nftContract.collection_name ? nftContract.collection_name : nftContract.name}>
+              {nftContract.collection_name ? nftContract.collection_name : nftContract.name}</option>)}
+          </datalist> */}
 
-          {/* {console.log("onChange ===",nftContractName)} */}
         </div>
 
         {/* {renderNftContract()} */}
 
-      <ul>
-      {nftContracts.length > 0 ? nftContracts.map(nftContract => (<li  key={nftContract.id}><Link className="nftContractLink" to={`/nft_contracts/${nftContract.id}`}>{nftContract.collection_name}{nftContract.name}</Link> -- Drop Date: {nftContract.drop_date} -- Contract ID: {nftContract.id}</li> 
-      )) : ""}
-      </ul>
+        {nftContract && <NftContractDetail
+          content={<>
+              {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
+              {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
+              <p>Contract Type: {nftContract.contract_type}</p>
+              <p>Contract Address: {nftContract.contract_address}</p>
+              {cancelNftContractButton(nftContract)}
+              <small>Creator: {currentUser}</small>
+          
+              <p>Image Url: {nftContract.image_url}</p>
+              <p>Drop Date: {nftContract.drop_date}</p>
+              <p>Description: {nftContract.description}</p>
+              <p>Price Mint: {nftContract.price_mint}</p>
+              <p>Creator Royalty: {nftContract.creator_royalty}</p>
+              <p>Token Metadata: {nftContract.token_metadata}</p>
+          </>}
+        // handleClose={togglePopup}
+          nftContract={nftContract}
+          handleCancel={handleCancel}
+          cancelNftContractButton={cancelNftContractButton}
+          />}
+        {!nftContract && <><p>Select an NFT Contract to view attributes.</p></>}
+
+
       <h3>Create or Update an NFT Contract</h3>
       <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>

@@ -12,6 +12,7 @@ class CreateNftContracts < ActiveRecord::Migration[6.1]
       t.text :description
       t.string :token_metadata
       t.integer :count
+      t.string :image_var
       t.belongs_to :user, null: false, foreign_key: true
       # t.integer :user_id
 

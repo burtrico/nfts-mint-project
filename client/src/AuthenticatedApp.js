@@ -13,7 +13,7 @@ import NftContractContainer from './components/NftContractContainer'
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   const [apiData, setApiData] = useState([]);
   const [walletNFTs,setWalletNFTs] = useState( [] );
-
+  const [nftContracts, setNftContracts] = useState([])
   
   // const [loading, setLoading] = useState(false);
 
@@ -21,6 +21,18 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   // const history = useHistory()
   
   useEffect( ()=>  {
+
+    fetch(`/api/nft_contracts`, {
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(nftContracts => {
+        setNftContracts(nftContracts)
+      console.log(nftContracts)
+      })
+
+    ////////////////////////////////////////////////////////////////
+
     const collections = ['cryptopunks', 'boredapeyachtclub','pudgypenguins','guttercatgang']
     
     const get = {method: 'GET'};
@@ -88,6 +100,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   },[])
 
 
+
+
   const handleLogout = () => {
     fetch(`/api/logout`, {
       method: 'DELETE',
@@ -146,6 +160,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   // pageframe
   // NftContractContainerDiv
 
+  // const transferContracts = (nftContracts) => { 
+  //   set
+  // }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -162,7 +180,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           <Route path="/NftMint">
             <NftMint currentUser={currentUser} 
             walletNFTs={walletNFTs}
-            addToWallet={addToWallet}/>
+            addToWallet={addToWallet}
+            nftContracts={nftContracts} />
           </Route>
 
           <Route path="/NftWallet">
@@ -174,6 +193,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           <Route path="/NftContractContainer">
             <NftContractContainer           
             currentUser={currentUser}
+            nftContracts={nftContracts}
+            setNftContracts={setNftContracts}
             />
           </Route>
 

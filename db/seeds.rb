@@ -12,24 +12,24 @@ user6 = User.create(ens_domain: "muzzi.eth", wallet_address: "d3nks9s7f8g6gf4d4s
 puts ">> Users Seeded <<"
 
 nft_contract1 = NftContract.create(user_id: user1.id, contract_type: "non-funglible", contract_address: "1r6c8ixn71xnfv8ed83fg85mskof6i3fjso6sx0s2l", 
-      collection_name: "Snuggly Snufkins", name: "", image_url: "./images/snufkin7", drop_date: "10/21/2021 12:00", price_mint: 0.2, 
+      collection_name: "Snuggly Snufkins", name: "", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin7.png", image_var: 'snufkin7', drop_date: "10/21/2021 12:00", price_mint: 0.2, 
       creator_royalty: 0.025, description: "Located in their apartment in Houston you can find 10 snuggly snufkins sitting on their box or hunting for mice on the Ethereum blockchain.", 
       token_metadata: "...", count: 6)
 
 nft_contract2 = NftContract.create(user_id: user1.id, contract_type: "non-funglible", contract_address: "w0qc8ixn71xnfv8ed83fg35mskof6i3fjso6sx0sd4", 
-      collection_name: "Majestic Mymbles", name: "", image_url: "./images/mymble7", 
+      collection_name: "Majestic Mymbles", name: "", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble7.png", image_var: 'mymble7', 
       drop_date: "10/25/2021 11:00", price_mint: 0.3, 
       creator_royalty: 0.025, description: "Located in their apartment in Houston you can find Mymble eating food or being cute on the Ethereum blockchain.", 
       token_metadata: "...", count: 6)
 
 nft_contract3 = NftContract.create(user_id: user2.id, contract_type: "funglible", contract_address: "9w3l8ixn71xnfv8ed83fg35mskof6i3fjso6sx4k2n", 
-      collection_name: "", name: "The Lizard", image_url: "https://i.etsystatic.com/14200102/r/il/26fd5c/1532451757/il_1588xN.1532451757_dt7m.jpg", 
-      drop_date: "10/28/2021 11:00", price_mint: 0.5, 
+      collection_name: "", name: "The Lizard", image_url: "https://i.etsystatic.com/14200102/r/il/26fd5c/1532451757/il_1588xN.1532451757_dt7m.png", 
+      drop_date: "10/28/2021 11:00", price_mint: 0.5, image_var: 'lizard1', 
       creator_royalty: 0.05, description: "Located on a tree branch near you, these repltiles look for bugs to eat on the Ethereum blockchain.", 
       token_metadata: "...", count: 10)
 
 nft_contract4 = NftContract.create(user_id: user3.id, contract_type: "non-funglible", contract_address: "6hw8jlx171xnfv8ed83fg35mskof6i3fjso8m3d0k5", 
-      collection_name: "", name: "Cuddly Corgis", image_url: "./images/cute_corgi_1", 
+      collection_name: "", name: "Cuddly Corgis", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/corgi1.png", image_var: 'corgi1', 
       drop_date: "10/20/2021 12:00", price_mint: 0.6, 
       creator_royalty: 0.03, description: "As cuddly and cute as can be, the corgis frolic and play in a park or in your house on the Ethereum blockchain.", 
       token_metadata: "...", count: 6)
@@ -37,77 +37,77 @@ nft_contract4 = NftContract.create(user_id: user3.id, contract_type: "non-fungli
 puts ">>> Nft Contracts Seeded <<<"
 
 nft1 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user1.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #1", image_url: "./images/snufkin1", 
+      name: "Snuggly Snufkin #1", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin1.png", image_var: 'snufkin1', 
       background_color: "", created_date: "10/21/2021 12:02", price_current: 1, last_sale: 0.5, num_sales: 1,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "1")
 
 nft2 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user6.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #2", image_url: "./images/snufkin2", 
+      name: "Snuggly Snufkin #2", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin2.png", image_var: 'snufkin2', 
       background_color: "", created_date: "10/21/2021 12:02", price_current: 1.5, last_sale: 0.6, num_sales: 2,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "2")
 
 nft3 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user5.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #3", image_url: "./images/snufkin3", 
+      name: "Snuggly Snufkin #3", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin3.png", image_var: 'snufkin3', 
       background_color: "", created_date: "10/21/2021 12:02", price_current: 0.9, last_sale: 0.3, num_sales: 1,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "3")
 
 nft4 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user4.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #4", image_url: "./images/snufkin4", 
+      name: "Snuggly Snufkin #4", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin4.png", image_var: 'snufkin4', 
       background_color: "", created_date: "10/21/2021 12:02", price_current: 2, last_sale: 0.75, num_sales: 2,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "4")
 
 nft5 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user3.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #5", image_url: "./images/snufkin5", 
+      name: "Snuggly Snufkin #5", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin5.png", image_var: 'snufkin5', 
       background_color: "", created_date: "10/21/2021 12:02", price_current: 1, last_sale: 0.3, num_sales: 1,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "5")
 
 nft6 = Nft.create(nft_contract_id: nft_contract1.id, user_id: user1.id, collection_name: nft_contract1.collection_name,
-      name: "Snuggly Snufkin #6", image_url: "./images/snufkin6", 
+      name: "Snuggly Snufkin #6", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/snufkin6.png", image_var: 'snufkin6', 
       background_color: "", created_date: "10/21/2021 12:03", price_current: 3, last_sale: 1, num_sales: 3,
       description: nft_contract1.description, token_metadata: nft_contract1.token_metadata, token_id: "6")
 
 # --------------------
 
       nft7 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user2.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #1", image_url: "./images/mymble1", 
+            name: "Majestic Mymble #1", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble1.png", image_var: 'mymble1', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 1.4, last_sale: 0.85, num_sales: 2,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "1")
       
       nft8 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user3.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #2", image_url: "./images/mymble2", 
+            name: "Majestic Mymble #2", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble2.png",  image_var: 'mymble2', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 1.2, last_sale: 0.8, num_sales: 3,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "2")
       
       nft9 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user4.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #3", image_url: "./images/mymble3", 
+            name: "Majestic Mymble #3", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble3.png",  image_var: 'mymble3', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 1, last_sale: 0.5, num_sales: 1,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "3")
       
       nft10 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user5.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #4", image_url: "./images/mymble4", 
+            name: "Majestic Mymble #4", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble4.png",  image_var: 'mymble4', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 1.8, last_sale: 1, num_sales: 4,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "4")
       
       nft11 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user6.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #5", image_url: "./images/mymble5", 
+            name: "Majestic Mymble #5", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble5.png",  image_var: 'mymble5', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 1.5, last_sale: 0.7, num_sales: 2,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "5")
       
       nft12 = Nft.create(nft_contract_id: nft_contract2.id, user_id: user2.id, collection_name: nft_contract2.collection_name,
-            name: "Majestic Mymble #6", image_url: "./images/mymble6", 
+            name: "Majestic Mymble #6", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/mymble6.png",  image_var: 'mymble6', 
             background_color: "", created_date: "10/25/2021 11:01", price_current: 2, last_sale: 1.5, num_sales: 2,
             description: nft_contract2.description, token_metadata: nft_contract2.token_metadata, token_id: "6")
       
 # --------------------
 
       nft13 = Nft.create(nft_contract_id: nft_contract4.id, user_id: user6.id, collection_name: nft_contract4.collection_name,
-            name: "Cute Corgi #1", image_url: "./images/cute_corgi_1", 
+            name: "Cute Corgi #1", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/corgi1.png",  image_var: 'corgi1', 
             background_color: "", created_date: "10/25/2021 12:01", price_current: 6, last_sale: 3, num_sales: 7,
             description: nft_contract4.description, token_metadata: nft_contract4.token_metadata, token_id: "1")
 
 
       nft14 = Nft.create(nft_contract_id: nft_contract4.id, user_id: user6.id, collection_name: nft_contract4.collection_name,
-            name: "Cute Corgi #2", image_url: "./images/cute_corgi_2", 
+            name: "Cute Corgi #2", image_url: "https://github.com/burtrico/nfts-mint-project/blob/main/client/src/corgi2.png", image_var: 'corgi2',
             background_color: "", created_date: "10/25/2021 12:01", price_current: 4, last_sale: 2, num_sales: 11,
             description: nft_contract4.description, token_metadata: nft_contract4.token_metadata, token_id: "2")
 

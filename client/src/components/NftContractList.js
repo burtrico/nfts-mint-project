@@ -1,6 +1,22 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import NftContractDetail from './NftContractDetail'
+import mymble1 from '../images/mymble1.png'
+import mymble2 from '../images/mymble2.png'
+import mymble3 from '../images/mymble3.png'
+import mymble4 from '../images/mymble4.png'
+import mymble5 from '../images/mymble5.png'
+import mymble6 from '../images/mymble6.png'
+import mymble7 from '../images/mymble7.png'
+import snufkin1 from '../images/snufkin1.png'
+import snufkin2 from '../images/snufkin2.png'
+import snufkin3 from '../images/snufkin3.png'
+import snufkin4 from '../images/snufkin4.png'
+import snufkin5 from '../images/snufkin5.png'
+import snufkin6 from '../images/snufkin6.png'
+import snufkin7 from '../images/snufkin7.png'
+import corgi1 from '../images/corgi1.png'
+import corgi2 from '../images/corgi2.png'
 
 
 function NftContractList({ currentUser, nftContracts, cancelNftContract, createNftContract, updateNftContract }) {
@@ -19,6 +35,7 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   const [ description, setDescription ] = useState('')
   const [ tokenMetadata, setTokenMetadata ] = useState('')
   const [ nftContractId, setNftContractId ] = useState('')
+
 
 
 
@@ -112,6 +129,10 @@ const handleCancel = (e) => {
 // }
 
 const [nftContract, setNftContract] = useState('')
+// const image = require(nftContract.image_url)
+const lizard1 = 'https://i.etsystatic.com/14200102/r/il/26fd5c/1532451757/il_1588xN.1532451757_dt7m.png'
+
+
 console.log("N F T CONTRACT = ",nftContract)
 // const toggleContract = () => { setIsOpen(!isOpen); }
 
@@ -132,7 +153,25 @@ console.log("N F T CONTRACT = ",nftContract)
 //   )
 // }
 
+// let image = ""
 
+// if (nftContract && nftContract.image_url == '../images/mymble1.png') { image = mymble1 }
+// else if (nftContract && nftContract.image_url == '../images/mymble2.png') { image = mymble2 }
+// else if (nftContract && nftContract.image_url == '../images/mymble3.png') { image = mymble3 }
+// else if (nftContract && nftContract.image_url == '../images/mymble4.png') { image = mymble4 }
+// else if (nftContract && nftContract.image_url == '../images/mymble5.png') { image = mymble5 }
+// else if (nftContract && nftContract.image_url == '../images/mymble6.png') { image = mymble6 }
+// else if (nftContract && nftContract.image_url == '../images/mymble7.png') { image = mymble7 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin1.png') { image = snufkin1 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin2.png') { image = snufkin2 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin3.png') { image = snufkin3 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin4.png') { image = snufkin4 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin5.png') { image = snufkin5 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin6.png') { image = snufkin6 }
+// else if (nftContract && nftContract.image_url == '../images/snufkin7.png') { image = snufkin7 }
+// else if (nftContract && nftContract.image_url == '../images/corgi1.png') { image = corgi1 }
+// else if (nftContract && nftContract.image_url == '../images/corgi2.png') { image = corgi2 }
+// else if (nftContract) { image = nftContract.image_url }
 
 // const resetNftContractName = useCallback(
 //   () => {
@@ -167,19 +206,18 @@ console.log("N F T CONTRACT = ",nftContract)
 
         {nftContract && <NftContractDetail
           content={<>
-              {nftContract.collection_name ? <h1>Collection Name: {nftContract.collection_name}</h1> : <br/> }
-              {nftContract.name ? <h1>Collection Name: {nftContract.name}</h1> : <br/> }
+              {nftContract.collection_name ? <h3>Collection Name: {nftContract.collection_name}</h3> : <h3>Collection Name: {nftContract.name}</h3> }
+              <small>Creator: {nftContract.user.ens_domain}</small>
+              <img src={nftContract.image_url} alt="Image not found"/>
               <p>Contract Type: {nftContract.contract_type}</p>
               <p>Contract Address: {nftContract.contract_address}</p>
-              {cancelNftContractButton(nftContract)}
-              <small>Creator: {nftContract.user.ens_domain}</small>
-          
               <p>Image Url: {nftContract.image_url}</p>
               <p>Drop Date: {nftContract.drop_date}</p>
               <p>Description: {nftContract.description}</p>
               <p>Price Mint: {nftContract.price_mint}</p>
               <p>Creator Royalty: {nftContract.creator_royalty}</p>
               <p>Token Metadata: {nftContract.token_metadata}</p>
+              {cancelNftContractButton(nftContract)}
           </>}
         // handleClose={togglePopup}
           nftContract={nftContract}

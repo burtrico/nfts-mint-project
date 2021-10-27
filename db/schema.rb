@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
     t.text "description"
     t.string "token_metadata"
     t.integer "count"
+    t.string "image_var"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
     t.text "description"
     t.string "token_metadata"
     t.string "token_id"
+    t.string "image_var"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["nft_contract_id"], name: "index_nfts_on_nft_contract_id"

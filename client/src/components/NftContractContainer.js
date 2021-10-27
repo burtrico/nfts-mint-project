@@ -3,21 +3,24 @@ import { Switch, Route } from 'react-router-dom'
 import NftContractList from './NftContractList'
 // import NftContractDetail from './NftContractDetail'
 
-function NftContractContainer({currentUser}) {
-  const [nftContracts, setNftContracts] = useState([])
+function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
+  // const [nftContracts, setNftContracts] = useState([])
   // const [votePlaced, setVotePlaced] = useState(false)
   // const [groups, setGroups] = useState([])
   
-  useEffect(() => {
-    fetch(`/api/nft_contracts`, {
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(nftContracts => {
-        setNftContracts(nftContracts)
-      console.log(nftContracts)
-      })
-  },[])
+  // useEffect(() => {
+  //   fetch(`/api/nft_contracts`, {
+  //     credentials: 'include'
+  //   })
+  //     .then(res => res.json())
+  //     .then(nftContracts => {
+  //       setNftContracts(nftContracts)
+  //     console.log(nftContracts)
+  //     })
+      
+  // },[])
+
+
 
   // const removeRsvpToNftContract = (pnftContractId) => {
   //   const pnftContract = pnftContracts.find(pnftContract => pnftContract.id === pnftContractId)
@@ -46,7 +49,7 @@ function NftContractContainer({currentUser}) {
   // }
 
   const cancelNftContract = (nftContractId) => {
-    return fetch(`/api/nftContracts/${nftContractId}`, {
+    return fetch(`/api/nft_contracts/${nftContractId}`, {
       method: "DELETE",
       credentials: 'include'
     })

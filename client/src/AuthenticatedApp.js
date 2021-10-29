@@ -1,7 +1,7 @@
 import './App.css';
 // import ReactDOM from "react-dom";
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Switch, Route, NavLink, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, NavLink, Redirect, useHistory } from 'react-router-dom'
 import NavBar from "./components/NavBar";
 import NftList from "./components/NftList";
 import NftWallet from "./components/NftWallet";
@@ -11,14 +11,16 @@ import NftContractContainer from './components/NftContractContainer'
 
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
+  const [onlineData, setOnlineData] = useState([]);
   const [apiData, setApiData] = useState([]);
+  const [backendData, setBackendData] = useState([]);
   const [walletNFTs,setWalletNFTs] = useState( [] );
   const [nftContracts, setNftContracts] = useState([])
   
   // const [loading, setLoading] = useState(false);
 
   console.log("Auth App after USE STATES:",currentUser)
-  // const history = useHistory()
+  const history = useHistory()
   
   useEffect( ()=>  {
 
@@ -37,7 +39,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
     
     const get = {method: 'GET'};
 
-        let completeNftArray = [];
+    let completeNftArray = [];
 
     collections.forEach(collection => { console.log(collection)
             
@@ -80,21 +82,48 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                   // collection.created_date
                   })                    
                 console.log(">> API NFT Array:  ", completeNftArray)
-                setApiData(completeNftArray); 
+                 
             })
         .catch(err => console.error(err))
         // setLoading(true);
     })
+    setOnlineData(completeNftArray)
+    // setApiData(completeNftArray);
+
+    fetch('/api/nfts'
+    // , { credentials: 'include' }
+    )
+    .then(resp1 => resp1.json())
+    .then(nftArray1 => {
+      console.log('@@@ FETCH /api/nfts ===',nftArray1)
+      // const myWalletNfts = nftArray.map(eachNft => eachNft.user_id === currentUser.id)
+      // console.log('!!! map is not a function ===',myWalletNfts)
+      let currentNftArray = completeNftArray;
+      // const importFilter = nftArray1.map(nftCard => {
+      //   nftCard.id !== nftToRemove.id)
+      nftArray1.forEach(nftObj => { 
+        const existsFilter = apiData.filter(nft => nft == nftObj)
+        
+        if (existsFilter.length > 0) {  }
+        else {  currentNftArray.unshift(nftObj)  }
+        
+      })
+      setApiData(currentNftArray)
+    })
+
+    
+
     // Set initial wallet cards:
     fetch('/api/nfts'
     // , { credentials: 'include' }
     )
     .then(resp => resp.json())
-    .then(nftArray => {
-      console.log('FETCH /api/nfts ===',nftArray)
-      const myWalletNfts = nftArray.map(eachNft => eachNft.user_id === currentUser.id)
-      console.log('!!! map is not a function ===',myWalletNfts)
-        setWalletNFTs(myWalletNfts)
+    .then(nftArray2 => {
+      console.log('@@@ FETCH WALLET /api/nfts ===',nftArray2)
+      // const myWalletNfts = nftArray2.map(eachNft => eachNft.user_id == currentUser.id)
+      // console.log('!!! map is not a function ===',myWalletNfts)
+        setWalletNFTs(nftArray2)
+        // setWalletNFTs(nftArray)
     })
 
   },[])
@@ -117,11 +146,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
   // const addToWallet = (nftToAdd) => {console.log(nftToAdd)}
     const addToWallet = (nftToAdd) => {
-      const addFilter = walletNFTs.filter(nftCard => nftCard === nftToAdd)
+      const addFilter = walletNFTs.filter(nftCard => nftCard.id === nftToAdd.id)
       if (addFilter.length < 1) {
       // Add Current User's ID to the NFT
       nftToAdd.user_id = currentUser.id
-      
+      console.log(" !!!!!!!!! POST NFT !!!!!!!!!",nftToAdd)
           const postObj = {
               method: 'POST',
               headers: {
@@ -199,7 +228,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           </Route>
 
           <Route path="/">
-            <NftList     
+            <NftList
+            currentUser={currentUser}     
             apiData={apiData} 
             addToWallet={addToWallet}        
             />

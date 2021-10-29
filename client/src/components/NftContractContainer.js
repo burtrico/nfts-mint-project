@@ -22,6 +22,8 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
 
 
 
+
+
   // const removeRsvpToNftContract = (pnftContractId) => {
   //   const pnftContract = pnftContracts.find(pnftContract => pnftContract.id === pnftContractId)
   //   return fetch(`/api/user_pnftContracts/${pnftContract.user_pnftContract.id}`, {
@@ -49,14 +51,15 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
   // }
 
   const cancelNftContract = (nftContractId) => {
+    const updatedNftContracts = nftContracts.filter(nftContract => nftContract.id !== nftContractId)
+    setNftContracts(updatedNftContracts)
     return fetch(`/api/nft_contracts/${nftContractId}`, {
       method: "DELETE",
       credentials: 'include'
     })
       .then(res => {
         if (res.ok) {
-          const updatedNftContracts = nftContracts.filter(nftContract => nftContract.id !== nftContractId)
-          setNftContracts(updatedNftContracts)
+          console.log(" >>>>> DELETE WORKED <<<<<<<")
         }
       })
   }
@@ -134,6 +137,7 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
   }
 
   const updateNftContract = (nftContractId, formData) => {
+
     return fetch(`/api/nft_contracts/${nftContractId}`, {
       method: "PATCH",
       headers: {
@@ -152,6 +156,7 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
       .then(nftContract => {
         const otherNftContracts = nftContracts.filter(eachNftContract => eachNftContract.id !== nftContractId)
         setNftContracts(otherNftContracts.concat(nftContract))
+        console.log(" >>>>> UPDATE WORKED <<<<<<<", nftContract)
       })
   }
 
@@ -165,6 +170,8 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
             cancelNftContract={cancelNftContract}
             createNftContract={createNftContract}
             updateNftContract={updateNftContract}
+            // refreshContracts={refreshContracts}
+            // handleRefresh={handleRefresh}
           />
 
         {/* <Route

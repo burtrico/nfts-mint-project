@@ -27,7 +27,7 @@ function NftWallet({walletNFTs, removeFromWallet}) {
             return(
                 <Grid
                   className="nftCard"
-                  key={"wallet-" && objectIn.id}
+                  key={objectIn.id}
                   item xs={3}
                 >
 

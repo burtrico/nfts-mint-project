@@ -21,6 +21,10 @@ a:hover {
   text-decoration: none;
 }
 
+.App {
+  margin-top: 120px;
+}
+
 .authForm {
   display: flex;
   align-items: center;
@@ -115,11 +119,55 @@ https://material-ui.com/components/grid/        */
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
 }
 
-/* .addButtonDiv {
 
-  
-} */
 
+.infoButton {
+  border-color: rgb(255, 255, 255);
+  color: white;
+  font-weight: 600;
+  background-color: rgb(88, 88, 88);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  width: 80px;
+  padding: 4px 0 4px 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
+  transition: color .5s, background-color .5s, box-shadow .5s;
+  /* display: block; */
+  /* float: right; */
+}
+
+.infoButton:hover {
+  border-color: rgb(0, 0, 0);
+  color: rgb(83, 83, 83);
+  font-weight: 600;
+  background-color: rgb(211, 211, 211);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  width: 80px;
+  padding: 4px 0 4px 4px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, .75);
+  transition: color .5s, background-color .5s, box-shadow .5s;
+  /* display: block; */
+  /* float: right; */
+}
+
+
+
+.cardInfoDiv {
+  padding-bottom: 10px;
+  /* width: 100%; */
+}
+
+.infoButtonDiv {
+  padding-top: 5px;
+  float: right;
+}
+
+.addButtonDiv {
+  float: left;
+}
 
 .addButton {
   border-color: rgb(255, 255, 255);
@@ -129,8 +177,8 @@ https://material-ui.com/components/grid/        */
   border-width: 1px;
   border-style: solid;
   border-radius: 15px;
-  width: 150px;
-  padding: 8px 0 10px 10px;
+  width: 100px;
+  padding: 10px 10px 10px 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, .4);
   transition: color .5s, background-color .5s, box-shadow .5s;
   display: block;
@@ -144,8 +192,8 @@ https://material-ui.com/components/grid/        */
   border-width: 1px;
   border-style: solid;
   border-radius: 15px;
-  width: 150px;
-  padding: 8px 0 10px 10px;
+  width: 100px;
+  padding: 10px 10px 10px 10px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, .75);
 }
 
@@ -222,11 +270,17 @@ https://material-ui.com/components/grid/        */
   font-size: small;
   font-weight: 800;
   padding-left: 20px;
+  padding-bottom: 5px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: url(https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg);
   background-repeat: no-repeat;
   background-size: 10px;
 }
+
+/* .cardInfoDiv {
+  float: left
+} */
+
 
 .lastsale {
   text-align: left;
@@ -259,11 +313,12 @@ https://material-ui.com/components/grid/        */
 }
 
 .contractDivList {
+  padding: 15px;
   background-color: rgb(247, 248, 250);
   border-radius: 20px;
-  width: 40%;
+  width: 50%;
   margin-top: 5%;
-  margin-right: 5%;
+  margin-right: 0%;
   float: right;
   text-align: left;
   outline: 4px solid rgb(36, 36, 36);
@@ -271,16 +326,29 @@ https://material-ui.com/components/grid/        */
   /* overflow-wrap: break-word */
 }
 
+ul {
+  list-style: none;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
 .contractDivForm {
+  padding: 15px;
   background-color: rgb(247, 248, 250);
   border-radius: 20px;
-  width: 40%;
+  width: 38%;
   margin-top: 5%;
-  margin-left: 5%;
+  margin-left: 0%;
   float: left;
   text-align: left;
   outline: 4px solid rgb(36, 36, 36);
   outline-offset: 0px;
+}
+
+.imgContractList {
+  float: right;
+  max-height: 200px;
+  max-width: 200px;
 }
 
 .mintDiv {

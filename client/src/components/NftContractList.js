@@ -1,28 +1,15 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import NftContractDetail from './NftContractDetail'
-import mymble1 from '../images/mymble1.png'
-import mymble2 from '../images/mymble2.png'
-import mymble3 from '../images/mymble3.png'
-import mymble4 from '../images/mymble4.png'
-import mymble5 from '../images/mymble5.png'
-import mymble6 from '../images/mymble6.png'
-import mymble7 from '../images/mymble7.png'
-import snufkin1 from '../images/snufkin1.png'
-import snufkin2 from '../images/snufkin2.png'
-import snufkin3 from '../images/snufkin3.png'
-import snufkin4 from '../images/snufkin4.png'
-import snufkin5 from '../images/snufkin5.png'
-import snufkin6 from '../images/snufkin6.png'
-import snufkin7 from '../images/snufkin7.png'
-import corgi1 from '../images/corgi1.png'
-import corgi2 from '../images/corgi2.png'
+
 
 
 function NftContractList({ currentUser, nftContracts, cancelNftContract, createNftContract, updateNftContract }) {
-  // const now = new Date();
-  // now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   // const [startDate, setStartDate] = useState(now.toISOString().slice(0, 16))
+
+  const history = useHistory();
 
   const [ collectionName, setCollectionName ] = useState('')
   const [ name, setName ] = useState('')
@@ -36,6 +23,17 @@ function NftContractList({ currentUser, nftContracts, cancelNftContract, createN
   const [ tokenMetadata, setTokenMetadata ] = useState('')
   const [ nftContractId, setNftContractId ] = useState('')
 
+  //  const [refresh, setRefresh] = useState(false);
+
+  // function goRefresh(refreshContracts) {
+  //   if (refreshContracts) { setRefresh(!refresh) }
+  // }
+
+  // goRefresh(refreshContracts)
+
+  const [refreshContracts, setRefreshContracts] = useState(false);
+
+  const handleRefresh = () => { setRefreshContracts(!refreshContracts); }
 
 
 
@@ -74,6 +72,8 @@ const formData = { collection_name: collectionName,
     setCreatorRoyalty('')
     setDescription('')
     setTokenMetadata('')
+    setNftContract('') 
+    // history.push('/NftContractContainer')
   }
   
   const [updateON, setUpdateON] = useState(false)
@@ -92,7 +92,9 @@ const cancelNftContractButton = (nftContract3) => {
 const handleCancel = (e) => {
   console.log("handleCancel e.target.value ===", e.target.value)
   cancelNftContract(nftContract.id);
-  // history.push('/api/proposals')
+  // handleRefresh()
+  setNftContract('')
+  // history.push('/api/NftContractContainer')
 }
 
 
@@ -129,8 +131,7 @@ const handleCancel = (e) => {
 // }
 
 const [nftContract, setNftContract] = useState('')
-// const image = require(nftContract.image_url)
-const lizard1 = 'https://i.etsystatic.com/14200102/r/il/26fd5c/1532451757/il_1588xN.1532451757_dt7m.png'
+
 
 
 console.log("N F T CONTRACT = ",nftContract)
@@ -153,25 +154,6 @@ console.log("N F T CONTRACT = ",nftContract)
 //   )
 // }
 
-// let image = ""
-
-// if (nftContract && nftContract.image_url == '../images/mymble1.png') { image = mymble1 }
-// else if (nftContract && nftContract.image_url == '../images/mymble2.png') { image = mymble2 }
-// else if (nftContract && nftContract.image_url == '../images/mymble3.png') { image = mymble3 }
-// else if (nftContract && nftContract.image_url == '../images/mymble4.png') { image = mymble4 }
-// else if (nftContract && nftContract.image_url == '../images/mymble5.png') { image = mymble5 }
-// else if (nftContract && nftContract.image_url == '../images/mymble6.png') { image = mymble6 }
-// else if (nftContract && nftContract.image_url == '../images/mymble7.png') { image = mymble7 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin1.png') { image = snufkin1 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin2.png') { image = snufkin2 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin3.png') { image = snufkin3 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin4.png') { image = snufkin4 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin5.png') { image = snufkin5 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin6.png') { image = snufkin6 }
-// else if (nftContract && nftContract.image_url == '../images/snufkin7.png') { image = snufkin7 }
-// else if (nftContract && nftContract.image_url == '../images/corgi1.png') { image = corgi1 }
-// else if (nftContract && nftContract.image_url == '../images/corgi2.png') { image = corgi2 }
-// else if (nftContract) { image = nftContract.image_url }
 
 // const resetNftContractName = useCallback(
 //   () => {
@@ -206,17 +188,18 @@ console.log("N F T CONTRACT = ",nftContract)
 
         {nftContract && <NftContractDetail
           content={<>
-              {nftContract.collection_name ? <h3>Collection Name: {nftContract.collection_name}</h3> : <h3>Collection Name: {nftContract.name}</h3> }
-              <small>Creator: {nftContract.user.ens_domain}</small>
-              <img src={nftContract.image_url} alt="Image not found"/>
-              <p>Contract Type: {nftContract.contract_type}</p>
-              <p>Contract Address: {nftContract.contract_address}</p>
-              <p>Image Url: {nftContract.image_url}</p>
-              <p>Drop Date: {nftContract.drop_date}</p>
-              <p>Description: {nftContract.description}</p>
-              <p>Price Mint: {nftContract.price_mint}</p>
-              <p>Creator Royalty: {nftContract.creator_royalty}</p>
-              <p>Token Metadata: {nftContract.token_metadata}</p>
+              <h3><u>Collection Name:</u> {nftContract.collection_name}</h3>
+              {/* {nftContract.collection_name ? <h3>Collection Name: {nftContract.collection_name}</h3> : <h3>Collection Name: {nftContract.name}</h3> } */}
+              <small><u>Creator:</u> {nftContract.user.ens_domain}</small>
+              <img className="imgContractList" src={nftContract.image_url} alt="Image not found"/>
+              <p><u>Contract Type:</u> {nftContract.contract_type}</p>
+              <p><u>Contract Address:</u> {nftContract.contract_address}</p>
+              <p><u>Image Url:</u> {nftContract.image_url}</p>
+              <p><u>Drop Date:</u> {nftContract.drop_date}</p>
+              <p><u>Description:</u> {nftContract.description}</p>
+              <p><u>Price Mint:</u> {nftContract.price_mint}</p>
+              <p><u>Creator Royalty:</u> {nftContract.creator_royalty}</p>
+              <p><u>Token Metadata:</u> {nftContract.token_metadata}</p>
               {cancelNftContractButton(nftContract)}
           </>}
         // handleClose={togglePopup}
@@ -224,118 +207,21 @@ console.log("N F T CONTRACT = ",nftContract)
           // handleCancel={handleCancel}
           // cancelNftContractButton={cancelNftContractButton}
           />}
-        {!nftContract && <><p>Select an NFT Contract to view attributes.</p></>}
+
+        {!nftContract && <div>
+          <br/>
+          <br/>
+          {/* <br/> */}
+        <p style={{textAlign: 'center'}}>Select an NFT Contract to view attributes.</p>
+        </div>}
 
         </div>
         <div className="contractDivForm">
-      <h3>Create or Update an NFT Contract</h3>
+      <h1>{updateON ? "Update an NFT Contract" : "Create an NFT Contract"}</h1>
       <button id="create-update-toggle" onClick={handleToggle}> Click here to Toggle to {updateON ? "CREATE" : "UPDATE"}</button>
       <form onSubmit={handleSubmit}>
 
-        <p>
-          <label htmlFor="collection_name"> Collection Name (if applicable)</label>
-          <input
-            type="text"
-            value={collectionName}
-            onChange={(e) => setCollectionName(e.target.value)}
-            name="token"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="name">Name (if applicable) </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="name"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="contract_type">Contract Type </label>
-          <input
-            type="text"
-            value={contractType}
-            list="cType"
-            onChange={(e) => setContractType(e.target.value)}
-            name="contract_type"
-          />
-          <datalist id="cType">
-            {["fungible","non-fungible"].map(type => <option>{type}</option>)}
-          </datalist>
-        </p>
-
-        <p>
-          <label htmlFor="contract_address">Contract Address </label>
-          <input
-            type="text"
-            value={contractAddress}
-            onChange={(e) => setContractAddress(e.target.value)}
-            name="contract_address"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="image_url">Image URL </label>
-          <input
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            name="image_url"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="drop_date"> Drop Date </label>
-          <input
-            type="datetime"
-            value={dropDate}
-            onChange={(e) => setDropDate(e.target.value)}
-            name="drop_date"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="price_mint"> Mint Price (Ethereum) </label>
-          <input
-          type="decimal"
-            value={priceMint}
-            onChange={(e) => setPriceMint(e.target.value)}
-            name="price_mint"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="creator_royalty"> Creator Royalty </label>
-          <input
-          type="decimal"
-            value={creatorRoyalty}
-            onChange={(e) => setCreatorRoyalty(e.target.value)}
-            name="creator_royalty"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="description"> Description </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            name="description"
-          />
-        </p>
-
-        <p>
-          <label htmlFor="token_metadata">Token MetaData URL</label>
-          <input
-            type="text"
-            value={tokenMetadata}
-            onChange={(e) => setTokenMetadata(e.target.value)}
-            name="token_metadata"
-          />
-        </p>
-
-        <p>
+      {updateON ? <p>
           <label htmlFor="nft_contract.id">Contract ID (only for Updating)</label>
           <input
             type="integer"
@@ -347,17 +233,111 @@ console.log("N F T CONTRACT = ",nftContract)
             <datalist id="cIDs">
             {nftContracts.map(nftContract => <option>{nftContract.id}</option>)}
           </datalist>
+        </p>   : console.log("CREATE")   }
+
+        <p>
+          <label htmlFor="collection_name"> Collection Name: </label>
+          <input
+            type="text"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+            name="token"
+          />
         </p>
 
         {/* <p>
-          <label htmlFor="start_date"> Start Date </label>
+          <label htmlFor="name">Name (if applicable) </label>
           <input
-            type="datetime-local"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            name="start_date"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            name="name"
           />
         </p> */}
+
+        <p>
+          <label htmlFor="contract_type"> Contract Type: </label>
+          <input
+            type="text"
+            value={contractType}
+            list="cType"
+            onChange={(e) => setContractType(e.target.value)}
+            name="contract_type"
+          />
+          <datalist id="cType">
+            {<option>"non-fungible"</option>}
+          </datalist>
+        </p>
+
+        <p>
+          <label htmlFor="contract_address"> Contract Address: </label>
+          <input
+            type="text"
+            value={contractAddress}
+            onChange={(e) => setContractAddress(e.target.value)}
+            name="contract_address"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="image_url"> Image URL: </label>
+          <input
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            name="image_url"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="drop_date"> Drop Date: </label>
+          <input
+            type="datetime"
+            value={dropDate}
+            onChange={(e) => setDropDate(e.target.value)}
+            name="drop_date"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="price_mint"> Mint Price (ETH): </label>
+          <input
+          type="decimal"
+            value={priceMint}
+            onChange={(e) => setPriceMint(e.target.value)}
+            name="price_mint"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="creator_royalty"> Creator Royalty: </label>
+          <input
+          type="decimal"
+            value={creatorRoyalty}
+            onChange={(e) => setCreatorRoyalty(e.target.value)}
+            name="creator_royalty"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="description"> Description: </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+          />
+        </p>
+
+        <p>
+          <label htmlFor="token_metadata"> Token MetaData URL: </label>
+          <input
+            type="text"
+            value={tokenMetadata}
+            onChange={(e) => setTokenMetadata(e.target.value)}
+            name="token_metadata"
+          />
+        </p>
+
 
         {" "}<button type="submit">{updateON ? "UPDATE NFT" : "CREATE NFT"}</button>
       </form>

@@ -6,7 +6,7 @@ class NftContractSerializer < ActiveModel::Serializer
 
   def drop_date
     if (object.drop_date == nil) 
-      object.drop_date = "tomorrow"
+      object.drop_date = "10/29/2021 08:00 AM"
     else
       object.drop_date.strftime('%A, %m/%d/%y at %I:%m %p')
     end

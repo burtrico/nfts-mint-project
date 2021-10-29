@@ -339,7 +339,7 @@ console.log("N F T CONTRACT = ",nftContract)
         </p>
 
 
-        {" "}<button type="submit">{updateON ? "UPDATE NFT" : "CREATE NFT"}</button>
+        {" "}<button className="addButton2" type="submit">{updateON ? "UPDATE NFT" : "CREATE NFT"}</button>
       </form>
       </div>
 

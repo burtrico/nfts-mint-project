@@ -48,9 +48,9 @@ class Api::NftsController < ApplicationController
       @nft = Nft.find_by(id: params[:id])
     end
   
-    def authorize_user
-      user_can_modify = current_user.admin? || @nft.user_id == current_user.id
-      render json: {error: "You don't have permission to perform that action"}, status: :forbidden unless user_can_modify
-    end
+    # def authorize_user
+    #   user_can_modify = current_user.admin? || @nft.user_id == current_user.id
+    #   render json: {error: "You don't have permission to perform that action"}, status: :forbidden unless user_can_modify
+    # end
     
 end

@@ -186,6 +186,8 @@ console.log("N F T CONTRACT = ",nftContract)
 
         {/* {renderNftContract()} */}
 
+        {/* ADDDDD AUTOFILL  */}
+
         {nftContract && <NftContractDetail
           content={<>
               <h3><u>Collection Name:</u> {nftContract.collection_name}</h3>

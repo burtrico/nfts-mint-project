@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_184000) do
   create_table "users", force: :cascade do |t|
     t.string "ens_domain"
     t.string "wallet_address"
+    t.decimal "ethereum"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin"

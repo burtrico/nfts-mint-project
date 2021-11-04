@@ -12,13 +12,17 @@ const linkStyles = {
 
 
 
-function NavBar({setCurrentUser, currentUser, handleLogout}) {
+function NavBar({setCurrentUser, currentUser, handleLogout, ethBalance, setEthBalance}) {
     
 
     return(<>
 
 <div className="title"><img src={Logo} alt="Logo"/></div>
     <div className="NavBar" >
+
+        <div className="navBalanceDiv" >
+            <p className="ethBalance"> {ethBalance} </p>
+        </div>
 
         <div className="navlink">
             <NavLink

@@ -1,10 +1,10 @@
 class Api::UsersController < ApplicationController
     skip_before_action :confirm_authentication
       
-    # def index
-    #   users = User.all
-    #   render json: users
-    # end
+    def index
+      users = User.all
+      render json: users
+    end
 
     def show
       if current_user
@@ -24,14 +24,14 @@ class Api::UsersController < ApplicationController
       end
     end
 
-    # def update
-    #   user = User.find_by(id: params[:id])
-    #   if user.update(user_params)
-    #     render json: user, status: :ok
-    #   else
-    #     render json: user.errors, status: :unprocessable_entity
-    #   end
-    # end
+    def update
+      user = User.find_by(id: params[:id])
+      if user.update(eth_params)
+        render json: user, status: :ok
+      else
+        render json: user.errors, status: :unprocessable_entity
+      end
+    end
 
     # def update
     #   if current_user.update(update_user_params)
@@ -50,7 +50,11 @@ class Api::UsersController < ApplicationController
     private
   
     def user_params
-      params.permit(:ens_domain, :wallet_address, :password, :password_confirmation)
+      params.permit(:ens_domain, :wallet_address, :password, :password_confirmation, :ethereum)
+    end
+
+    def eth_params
+      params.permit(:ethereum)
     end
 
     # def update_user_params

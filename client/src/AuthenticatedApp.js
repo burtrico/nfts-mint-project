@@ -10,20 +10,25 @@ import NftContractContainer from './components/NftContractContainer'
 
 
 
-function AuthenticatedApp({ currentUser, setCurrentUser }) {
+function AuthenticatedApp({ currentUser, setCurrentUser}) {
   const [onlineData, setOnlineData] = useState([]);
   const [apiData, setApiData] = useState([]);
   const [backendData, setBackendData] = useState([]);
   const [walletNFTs,setWalletNFTs] = useState( [] );
   const [nftContracts, setNftContracts] = useState([])
-  
+
+  const [ethBalance, setEthBalance] = useState(0)
+
+
   // const [loading, setLoading] = useState(false);
 
-  console.log("Auth App after USE STATES:",currentUser)
+  // console.log("Auth App after USE STATES:",currentUser)
   const history = useHistory()
   
   useEffect( ()=>  {
 
+    setEthBalance(parseFloat(currentUser.ethereum))
+   
     fetch(`/api/nft_contracts`, {
       credentials: 'include'
     })
@@ -126,6 +131,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         // setWalletNFTs(nftArray)
     })
 
+    // setEthBalance(currentUser.ethereum)
+
+
   },[])
 
 
@@ -150,6 +158,12 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       if (addFilter.length < 1) {
       // Add Current User's ID to the NFT
       nftToAdd.user_id = currentUser.id
+
+      const ethDifference = 0 - parseFloat(nftToAdd.price_current)
+      updateEthBalance(ethDifference)
+      nftToAdd.last_sale = nftToAdd.price_current
+      nftToAdd.price_current = nftToAdd.price_current * 1.1
+
       console.log(" !!!!!!!!! POST NFT !!!!!!!!!",nftToAdd)
           const postObj = {
               method: 'POST',
@@ -174,6 +188,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
   // const removeFromWallet = () => {console.log(currentUser)}
   const removeFromWallet =(nftToRemove)=> {
+
+    const ethDifference = parseFloat(nftToRemove.price_current)
+    updateEthBalance(ethDifference)
+    nftToRemove.last_sale = nftToRemove.price_current
+
     return  fetch(`/api/nfts/${nftToRemove.id}`, {
       method: 'DELETE',
       credentials: 'include'
@@ -184,6 +203,32 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         setWalletNFTs(removeFilter)
       }
     })
+  }
+
+  const updateEthBalance =(ethDifference)=> {
+    const newBalance = parseFloat(ethBalance) + parseFloat(ethDifference)
+    console.log("NEWWW BALANCE !!!! ======", newBalance)
+    setEthBalance(newBalance)
+
+    return fetch(`/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include',
+      body: JSON.stringify({ethereum: newBalance})
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return res.json().then(errors => Promise.reject(errors))
+        }
+      })
+      .then(userInfo => {
+        console.log(" ====> ETH BALANCE UPDATE ===> ", userInfo)
+      })
+
   }
 
   // pageframe
@@ -200,6 +245,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
           handleLogout={handleLogout}
+          ethBalance={ethBalance}
+          setEthBalance={setEthBalance}
         />
         {/* { console.log(walletNFTs) } */}
 
@@ -210,13 +257,17 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <NftMint currentUser={currentUser} 
             walletNFTs={walletNFTs}
             addToWallet={addToWallet}
-            nftContracts={nftContracts} />
+            nftContracts={nftContracts}
+            ethBalance={ethBalance}
+            setEthBalance={setEthBalance} />
           </Route>
 
           <Route path="/NftWallet">
             <NftWallet currentUser={currentUser} 
             walletNFTs={walletNFTs}
-            removeFromWallet={removeFromWallet}/>
+            removeFromWallet={removeFromWallet}
+            ethBalance={ethBalance}
+            setEthBalance={setEthBalance} />
           </Route>
 
           <Route path="/NftContractContainer">
@@ -231,7 +282,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <NftList
             currentUser={currentUser}     
             apiData={apiData} 
-            addToWallet={addToWallet}        
+            addToWallet={addToWallet}     
             />
           </Route>
 

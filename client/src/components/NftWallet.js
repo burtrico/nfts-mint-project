@@ -8,7 +8,7 @@ import NFTcard from './NftCard';
 import Opensea from '../images/opensea.png';
 import Powered from '../images/powered.png';
 
-function NftWallet({walletNFTs, removeFromWallet}) {
+function NftWallet({walletNFTs, removeFromWallet, ethBalance, setEthBalance}) {
 
 
     return(

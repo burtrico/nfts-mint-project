@@ -9,7 +9,7 @@ import {useState} from 'react'
 import Select from 'react-select'
 
 
-function NftMint({currentUser, walletNFTs, addToWallet, nftContracts}) {
+function NftMint({currentUser, walletNFTs, addToWallet, nftContracts, ethBalance, setEthBalance}) {
 
     const [formData, formDataSetter] = useState({
         quantity: "",
@@ -73,7 +73,7 @@ function NftMint({currentUser, walletNFTs, addToWallet, nftContracts}) {
             description: contractToMint.description,
             token_metadata: contractToMint.token_metadata,
             created_date: null,
-            price_current: null,   
+            price_current: contractToMint.price_mint,   
             last_sale: contractToMint.price_mint,
             user_id: currentUser.id,
             nft_contract_id: null

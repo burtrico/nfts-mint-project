@@ -120,14 +120,14 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
     // Set initial wallet cards:
     fetch('/api/nfts'
-    // , { credentials: 'include' }
+    , { credentials: 'include' }
     )
     .then(resp => resp.json())
     .then(nftArray2 => {
       console.log('@@@ FETCH WALLET /api/nfts ===',nftArray2)
-      // const myWalletNfts = nftArray2.map(eachNft => eachNft.user_id == currentUser.id)
+      const myWalletNfts = nftArray2.filter(eachNft => eachNft.user.id == currentUser.id)
       // console.log('!!! map is not a function ===',myWalletNfts)
-        setWalletNFTs(nftArray2)
+        setWalletNFTs(myWalletNfts)
         // setWalletNFTs(nftArray)
     })
 

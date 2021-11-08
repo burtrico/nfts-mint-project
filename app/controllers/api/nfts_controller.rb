@@ -50,7 +50,7 @@ class Api::NftsController < ApplicationController
 
     def update_nft_params
       params.permit( :id, :user, :user_id, :image_url, :price_current, :last_sale, :num_sales )
-
+    end
     # def authorize_user
     #   user_can_modify = current_user.admin? || @nft.user_id == current_user.id
     #   render json: {error: "You don't have permission to perform that action"}, status: :forbidden unless user_can_modify

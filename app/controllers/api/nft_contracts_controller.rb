@@ -40,21 +40,9 @@ class Api::NftContractsController < ApplicationController
     private
   
     def nft_contract_params
-      params.permit(:id, :user_id, :contract_type, :contract_address, :collection_name, :name, :image_url, :drop_date, :price_mint,
+      params.permit(:id, :user, :user_id, :contract_type, :contract_address, :collection_name, :name, :image_url, :drop_date, :price_mint,
         :creator_royalty, :description, :token_metadata, :count)
     end
-
-    # t.string :contract_type
-    # t.string :contract_address
-    # t.string :collection_name
-    # t.string :name
-    # t.string :image_url
-    # t.datetime :drop_date
-    # t.decimal :price_mint
-    # t.decimal :creator_royalty
-    # t.text :description
-    # t.string :token_metadata
-    # t.belongs_to :user
 
     def edit_nft_contract
       @nft_contract = NftContract.find_by(id: params[:id])

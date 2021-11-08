@@ -24,7 +24,7 @@ class Api::NftsController < ApplicationController
     end
   
     def update
-      if @nft.update(nft_params)
+      if @nft.update(update_nft_params)
         render json: @nft, status: :ok
       else
         render json: @nft.errors, status: :unprocessable_entity
@@ -39,15 +39,18 @@ class Api::NftsController < ApplicationController
   
     private
   
-    def nft_params
-      params.permit(:id, :user_id, :nft_contract_id, :collection_name, :name, :image_url, :background_color, :created_date, 
-        :price_current, :last_sale, :num_sales, :description, :token_metadata, :token_id)
-    end
-
     def edit_nft
       @nft = Nft.find_by(id: params[:id])
     end
-  
+
+    def nft_params
+      params.permit(:id, :user, :user_id, :nft_contract_id, :collection_name, :name, :image_url, :background_color, :created_date, 
+        :price_current, :last_sale, :num_sales, :description, :token_metadata, :token_id)
+    end
+
+    def update_nft_params
+      params.permit( :id, :user, :user_id, :image_url, :price_current, :last_sale, :num_sales )
+
     # def authorize_user
     #   user_can_modify = current_user.admin? || @nft.user_id == current_user.id
     #   render json: {error: "You don't have permission to perform that action"}, status: :forbidden unless user_can_modify

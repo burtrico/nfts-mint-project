@@ -133,6 +133,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
     // setEthBalance(currentUser.ethereum)
 
+    
 
   },[])
 

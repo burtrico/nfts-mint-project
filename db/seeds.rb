@@ -113,6 +113,5 @@ nft6 = Nft.create(nft_contract: nft_contract1, user: user1, collection_name: nft
 
 
 
-
 puts ">> Seeding complete <<"
 

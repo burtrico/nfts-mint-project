@@ -49,10 +49,12 @@ class Api::UsersController < ApplicationController
   
     private
   
+    # ens_domain replaces our standard username
     def user_params
       params.permit(:ens_domain, :wallet_address, :password, :password_confirmation, :ethereum)
     end
 
+    # Only allowed to update the "ethereum" amount that the current user holds
     def eth_params
       params.permit(:ethereum)
     end
@@ -60,5 +62,6 @@ class Api::UsersController < ApplicationController
     # def update_user_params
     #   params.permit(:profile_picture_url, :profile_picture_thumbnail_url)
     # end
+
 
 end

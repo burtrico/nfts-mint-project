@@ -11,25 +11,20 @@ import NftContractContainer from './components/NftContractContainer'
 
 
 function AuthenticatedApp({ currentUser, setCurrentUser}) {
-  const [onlineData, setOnlineData] = useState([]);
-  const [apiData, setApiData] = useState([]);
-  const [backendData, setBackendData] = useState([]);
-  const [walletNFTs,setWalletNFTs] = useState( [] );
-  const [nftContracts, setNftContracts] = useState([])
 
-  const [ethBalance, setEthBalance] = useState(0)
+ 
+  const [apiData, setApiData] = useState([]);           // NFTs displayed on Homepage
+  const [walletNFTs,setWalletNFTs] = useState( [] );    // CurrenUser NFTs
+  const [nftContracts, setNftContracts] = useState([])  // NFT Contracts
+  const [ethBalance, setEthBalance] = useState(0)       // Wallet Ethereum balance
 
-
-  // const [loading, setLoading] = useState(false);
-
-  // console.log("Auth App after USE STATES:",currentUser)
   const history = useHistory()
   
   useEffect( ()=>  {
-
-    setEthBalance(parseFloat(currentUser.ethereum))
+    
+    setEthBalance(parseFloat(currentUser.ethereum)) // Load wallet's Ethereum balance
    
-    fetch(`/api/nft_contracts`, {
+    fetch(`/api/nft_contracts`, {       // Fetch NFT Contracts
       credentials: 'include'
     })
       .then(res => res.json())
@@ -38,17 +33,16 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       console.log(nftContracts)
       })
 
-    ////////////////////////////////////////////////////////////////
-
+    // Fetch NFTs from Opensea API, one collection at a time 
     const collections = ['cryptopunks', 'boredapeyachtclub','pudgypenguins','guttercatgang']
+    const qty = 10     // Number of NFTs to fetch from each collection
     
     const get = {method: 'GET'};
-
     let completeNftArray = [];
 
     collections.forEach(collection => { console.log(collection)
             
-    fetch(`https://api.opensea.io/api/v1/assets?order_direction=asc&offset=0&limit=10&collection=${collection}`, get)     
+    fetch(`https://api.opensea.io/api/v1/assets?order_direction=asc&offset=0&limit=${qty}&collection=${collection}`, get)     
         .then(response => response.json())
         .then(nftArray => {
             console.log(nftArray.assets)
@@ -133,7 +127,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
     // setEthBalance(currentUser.ethereum)
 
-    
+
 
   },[])
 

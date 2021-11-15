@@ -84,22 +84,18 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
                  
             })
         .catch(err => console.error(err))
-        // setLoading(true);
+
     })
-    setOnlineData(completeNftArray)
+ 
     // setApiData(completeNftArray);
 
     fetch('/api/nfts'
-    // , { credentials: 'include' }
+    , { credentials: 'include' }
     )
     .then(resp1 => resp1.json())
     .then(nftArray1 => {
-      console.log('@@@ FETCH /api/nfts ===',nftArray1)
-      // const myWalletNfts = nftArray.map(eachNft => eachNft.user_id === currentUser.id)
-      // console.log('!!! map is not a function ===',myWalletNfts)
       let currentNftArray = completeNftArray;
-      // const importFilter = nftArray1.map(nftCard => {
-      //   nftCard.id !== nftToRemove.id)
+
       nftArray1.forEach(nftObj => { 
         const existsFilter = apiData.filter(nft => nft == nftObj)
         
@@ -118,16 +114,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
     )
     .then(resp => resp.json())
     .then(nftArray2 => {
-      console.log('@@@ FETCH WALLET /api/nfts ===',nftArray2)
       const myWalletNfts = nftArray2.filter(eachNft => eachNft.user.id == currentUser.id)
-      // console.log('!!! map is not a function ===',myWalletNfts)
         setWalletNFTs(myWalletNfts)
-        // setWalletNFTs(nftArray)
     })
 
     // setEthBalance(currentUser.ethereum)
-
-
 
   },[])
 
@@ -147,8 +138,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       })
   }
 
-  // const addToWallet = (nftToAdd) => {console.log(nftToAdd)}
-    const addToWallet = (nftToAdd) => {
+
+    const addToWallet = (nftToAdd) => {       // Add/Buy NFT to Wallet
       const addFilter = walletNFTs.filter(nftCard => nftCard.id === nftToAdd.id)
       if (addFilter.length < 1) {
       // Add Current User's ID to the NFT
@@ -181,8 +172,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       })
   }}
 
-  // const removeFromWallet = () => {console.log(currentUser)}
-  const removeFromWallet =(nftToRemove)=> {
+
+  const removeFromWallet =(nftToRemove)=> {      // Remove/Sell NFT from Wallet
 
     const ethDifference = parseFloat(nftToRemove.price_current)
     updateEthBalance(ethDifference)
@@ -200,7 +191,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
     })
   }
 
-  const updateEthBalance =(ethDifference)=> {
+  const updateEthBalance =(ethDifference)=> {      // Update Wallet's eth balance
     const newBalance = parseFloat(ethBalance) + parseFloat(ethDifference)
     console.log("NEWWW BALANCE !!!! ======", newBalance)
     setEthBalance(newBalance)
@@ -226,12 +217,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
   }
 
-  // pageframe
-  // NftContractContainerDiv
 
-  // const transferContracts = (nftContracts) => { 
-  //   set
-  // }
 
   return (
     <div className="App">
@@ -243,9 +229,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
           ethBalance={ethBalance}
           setEthBalance={setEthBalance}
         />
-        {/* { console.log(walletNFTs) } */}
 
-        {/* {!loading ? <h1>Loading...</h1> : <></>} */}
         
         <Switch>
           <Route path="/NftMint">

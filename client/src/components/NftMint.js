@@ -80,7 +80,6 @@ function NftMint({currentUser, walletNFTs, addToWallet, nftContracts, ethBalance
 
         }
         
-
             // Use handleAddCard from props to add the newCard JS object
             // to the existing array of Card objects (cards)
         addToWallet(localNft);

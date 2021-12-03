@@ -128,8 +128,6 @@ function NftMint({currentUser, walletNFTs, addToWallet, nftContracts, ethBalance
     alert("See wallet for your newly minted NFT!")
 
 }
-
-
     // const collection_options = nftContracts.map(nftContract => {
     //     return [value:  
 

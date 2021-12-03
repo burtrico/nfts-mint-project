@@ -10,5 +10,9 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
-  "author": "burtrico"
+  "author": "burtrico",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.1"
+  }
 }

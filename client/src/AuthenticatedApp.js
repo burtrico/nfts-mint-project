@@ -20,6 +20,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
   const history = useHistory()
   
+
+
+
+
   useEffect( ()=>  {
     
     setEthBalance(parseFloat(currentUser.ethereum)) // Load wallet's Ethereum balance

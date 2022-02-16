@@ -14,14 +14,14 @@ const linkStyles = {
 
 function NavBar({setCurrentUser, currentUser, handleLogout, ethBalance, setEthBalance}) {
     
-
+const ethBalanceFixed = parseFloat(ethBalance).toFixed(1)
     return(<>
 
 <div className="title"><img src={Logo} alt="Logo"/></div>
     <div className="NavBar" >
 
         <div className="navBalanceDiv" >
-            <p className="ethBalance"> {ethBalance} </p>
+            <p className="ethBalance"> {ethBalanceFixed} </p>
         </div>
 
         <div className="navlink">

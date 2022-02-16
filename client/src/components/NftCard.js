@@ -35,9 +35,11 @@ function NftCard({nftObj, addToWallet, removeFromWallet}) {
     // const image = require(nftObj.image_url)
     // let image = nftObj.image_url;
 
-    const price = (Math.random()*20).toFixed(1)
+    let randomFloat = parseFloat( Math.round( (Math.random()*20) )).toFixed(1)
 
-    if (nftObj.price_current === null) { nftObj.price_current = price }
+    let price = JSON.parse(JSON.stringify(randomFloat))
+
+    if (nftObj.price_current === null) { nftObj.price_current = JSON.parse(JSON.stringify(price)) }
   
 
     return (

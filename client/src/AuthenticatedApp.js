@@ -16,18 +16,14 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
   const [apiData, setApiData] = useState([]);           // NFTs displayed on Homepage
   const [walletNFTs,setWalletNFTs] = useState( [] );    // CurrenUser NFTs
   const [nftContracts, setNftContracts] = useState([])  // NFT Contracts
+  const [updateNftContracts, setUpdateNftContracts] = useState(false)
+  const [updateWalletNFTs, setUpdateWalletNFTs] = useState(false)
   const [ethBalance, setEthBalance] = useState(0)       // Wallet Ethereum balance
 
   const history = useHistory()
   
-
-
-
-
-  useEffect( ()=>  {
-    
-    setEthBalance(parseFloat(currentUser.ethereum)) // Load wallet's Ethereum balance
-   
+  useEffect(()=>  {
+    setUpdateNftContracts(false)
     fetch(`/api/nft_contracts`, {       // Fetch NFT Contracts
       credentials: 'include'
     })
@@ -36,6 +32,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
         setNftContracts(nftContracts)
       console.log(nftContracts)
       })
+  },[updateNftContracts])
+
+
+  useEffect( ()=>  {
+    setEthBalance(parseFloat(currentUser.ethereum)) // Load wallet's Ethereum balance
 
     // Fetch NFTs from Opensea API, one collection at a time 
     const collections = ['cryptopunks', 'boredapeyachtclub','pudgypenguins','guttercatgang']
@@ -85,14 +86,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
                   // collection.created_date
                   })                    
                 console.log(">> API NFT Array:  ", completeNftArray)
-                 
             })
         .catch(err => console.error(err))
-
     })
  
     // setApiData(completeNftArray);
-
     fetch('/api/nfts'
     , { credentials: 'include' }
     )
@@ -109,9 +107,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       })
       setApiData(currentNftArray)
     })
+  },[])
 
-    
 
+  useEffect( ()=>  {
+    setUpdateWalletNFTs(false)
     // Set initial wallet cards:
     fetch('/api/nfts'
     , { credentials: 'include' }
@@ -121,12 +121,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       const myWalletNfts = nftArray2.filter(eachNft => eachNft.user.id == currentUser.id)
         setWalletNFTs(myWalletNfts)
     })
-
-    // setEthBalance(currentUser.ethereum)
-
-  },[])
-
-
+  },[updateWalletNFTs])
 
 
   const handleLogout = () => {
@@ -151,8 +146,8 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
       const ethDifference = 0 - parseFloat(nftToAdd.price_current)
       updateEthBalance(ethDifference)
-      nftToAdd.last_sale = nftToAdd.price_current
-      nftToAdd.price_current = nftToAdd.price_current * 1.1
+      // nftToAdd.last_sale = nftToAdd.price_current
+      // nftToAdd.price_current = nftToAdd.price_current * 1.1
 
       console.log(" !!!!!!!!! POST NFT !!!!!!!!!",nftToAdd)
           const postObj = {
@@ -173,6 +168,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       })
       .then(nftObj => {
           setWalletNFTs(walletNFTs.concat(nftObj))
+          setUpdateWalletNFTs(true)
       })
   }}
 
@@ -181,7 +177,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
     const ethDifference = parseFloat(nftToRemove.price_current)
     updateEthBalance(ethDifference)
-    nftToRemove.last_sale = nftToRemove.price_current
+    // nftToRemove.last_sale = nftToRemove.price_current
 
     return  fetch(`/api/nfts/${nftToRemove.id}`, {
       method: 'DELETE',
@@ -191,6 +187,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
       if (res.ok) {
         const removeFilter = walletNFTs.filter(nftCard => nftCard.id !== nftToRemove.id)
         setWalletNFTs(removeFilter)
+        setUpdateWalletNFTs(true)
       }
     })
   }
@@ -238,34 +235,37 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
         <Switch>
           <Route path="/NftMint">
             <NftMint currentUser={currentUser} 
-            walletNFTs={walletNFTs}
-            addToWallet={addToWallet}
-            nftContracts={nftContracts}
-            ethBalance={ethBalance}
-            setEthBalance={setEthBalance} />
+              walletNFTs={walletNFTs}
+              addToWallet={addToWallet}
+              nftContracts={nftContracts}
+              ethBalance={ethBalance}
+              setEthBalance={setEthBalance}
+             />
           </Route>
 
           <Route path="/NftWallet">
             <NftWallet currentUser={currentUser} 
-            walletNFTs={walletNFTs}
-            removeFromWallet={removeFromWallet}
-            ethBalance={ethBalance}
-            setEthBalance={setEthBalance} />
+              walletNFTs={walletNFTs}
+              removeFromWallet={removeFromWallet}
+              ethBalance={ethBalance}
+              setEthBalance={setEthBalance}
+             />
           </Route>
 
           <Route path="/NftContractContainer">
             <NftContractContainer           
-            currentUser={currentUser}
-            nftContracts={nftContracts}
-            setNftContracts={setNftContracts}
+              currentUser={currentUser}
+              nftContracts={nftContracts}
+              setNftContracts={setNftContracts}
+              setUpdateNftContracts={setUpdateNftContracts}
             />
           </Route>
 
           <Route path="/">
             <NftList
-            currentUser={currentUser}     
-            apiData={apiData} 
-            addToWallet={addToWallet}     
+              currentUser={currentUser}     
+              apiData={apiData} 
+              addToWallet={addToWallet}     
             />
           </Route>
 

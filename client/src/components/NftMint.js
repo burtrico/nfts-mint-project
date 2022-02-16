@@ -113,7 +113,7 @@ function NftMint({currentUser, walletNFTs, addToWallet, nftContracts, ethBalance
         description: contractToMint.description,
         token_metadata: contractToMint.token_metadata,
         created_date: null,
-        price_current: null,   
+        price_current: contractToMint.price_mint,   
         last_sale: contractToMint.price_mint,
         user_id: currentUser.id,
         nft_contract_id: contractToMint.id

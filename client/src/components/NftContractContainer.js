@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import NftContractList from './NftContractList'
 // import NftContractDetail from './NftContractDetail'
 
-function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
+function NftContractContainer({currentUser, nftContracts, setNftContracts, setUpdateNftContracts}) {
   // const [nftContracts, setNftContracts] = useState([])
   // const [votePlaced, setVotePlaced] = useState(false)
   // const [groups, setGroups] = useState([])
@@ -157,6 +157,7 @@ function NftContractContainer({currentUser, nftContracts, setNftContracts}) {
         const otherNftContracts = nftContracts.filter(eachNftContract => eachNftContract.id !== nftContractId)
         setNftContracts(otherNftContracts.concat(nftContract))
         console.log(" >>>>> UPDATE WORKED <<<<<<<", nftContract)
+        setUpdateNftContracts(true)
       })
   }
 

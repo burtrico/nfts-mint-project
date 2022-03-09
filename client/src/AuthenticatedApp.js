@@ -1,7 +1,7 @@
 import './App.css';
 // import ReactDOM from "react-dom";
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Switch, Route, NavLink, Redirect, useHistory } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Router, NavLink, Redirect, useHistory } from 'react-router-dom'
 import NavBar from "./components/NavBar";
 import NftList from "./components/NftList";
 import NftWallet from "./components/NftWallet";
@@ -21,6 +21,12 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
   const [ethBalance, setEthBalance] = useState(0)       // Wallet Ethereum balance
 
   const history = useHistory()
+
+  useEffect(() => {
+    return history.listen((location) => { 
+       console.log(`You changed the page to: ${location.pathname}`) 
+    }) 
+ },[history]) 
   
   useEffect(()=>  {
     setUpdateNftContracts(false)
@@ -177,7 +183,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
     const ethDifference = parseFloat(nftToRemove.price_current)
     updateEthBalance(ethDifference)
-    // nftToRemove.last_sale = nftToRemove.price_current
+
 
     return  fetch(`/api/nfts/${nftToRemove.id}`, {
       method: 'DELETE',
@@ -222,7 +228,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router history={history} >
         <NavBar
           setCurrentUser={setCurrentUser}
           currentUser={currentUser}
@@ -271,7 +277,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser}) {
 
           <Redirect to="/" />
         </Switch>
-      </BrowserRouter>
+      </Router>
 
     </div>
   )

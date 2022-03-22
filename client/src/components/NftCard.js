@@ -11,6 +11,7 @@ function NftCard({nftObj, addToWallet, removeFromWallet}) {
 
     const togglePopup = () => { setIsOpen(!isOpen); }
 
+    
     // function addToWallet() { walletSetter(!addNFT) }
 
     // const renderPrice=()=> {
